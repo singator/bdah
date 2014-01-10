@@ -1,0 +1,38 @@
+# BDAH 2014 Workshop Proposal
+
+## Summary:
+Increasingly, healthcare professionals are faced with larger and larger
+datasets, hence the need for conferences such as this one. The pressure is on them to understand the complex relationships among
+the variables and to then provide actionable recommendations. 
+
+This workshop is intended to be a practical introduction to healthcare analytics
+in `R`. The intention is for it to be quite self-contained. Hence it will start
+with an overview of the technical background requried for the workshop. Then it
+will cover an essential tool for exploring the data: visualisation. Through
+visualisations, one can gain a good intuition of the relationships within a
+dataset. (Viewed from different angles...) This section will consist of three
+types of visualisation techniques that can be used to explore a data-set, and
+that are readily available in `R`. The three tracks can be categorised as
+conditional plotting using the grammar of graphics, interactive charts, and
+animations. `R` packages that provide these capabilities will be introduced. 
+
+By focusing all three sections on one dataset, the attendee will be able to see
+the overall workflow of an analyst, and understand which tools to apply at which
+stage.
+
+## Speakers/Instructors:
+1. Dan Wu, Team Lead, Healthcare Analytics Unit, Khoo Teck Puat Hospital.
+2. Julian Lee, Founder, Singapore R User Group, Ex-researcher, National Cancer
+Centre.
+3. Vik Gopal, Lecturer, Department of Statistics and Applied Probability, NUS.
+
+## Topics:
+1. Overview of Descriptive Statistics and Inference.
+2. Data Visualisation with `R`.
+3. Workflow-based Data Mining with `R`.   
+
+## Target Audience:
+
+## Level of material covered. (could be combined with Topics)
+
+## Speaker Bios:
