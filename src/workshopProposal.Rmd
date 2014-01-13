@@ -36,3 +36,10 @@ Centre.
 ## Level of material covered. (could be combined with Topics)
 
 ## Speaker Bios:
+Vik Gopal obtained his PhD from the University of Florida, with a dissertation
+on running Markov chains in parallel. Upon graduation, he joined the IBM
+Research Collaboratory in Singapore and worked with government agencies on
+traffic prediction and weather modeling problems. He is currently working at NUS
+as a lecturer in the department of statistics. He is an ardent fan of `R` due to
+it's vast library of user-contributed statistical routines and excellent
+visualisation capailities.
