@@ -2,8 +2,9 @@
 
 ## Summary:
 Increasingly, healthcare professionals are faced with larger and larger
-datasets, hence the need for conferences such as this one. The pressure is on them to understand the complex relationships among
-the variables and to then provide actionable recommendations. 
+datasets, hence the need for conferences such as this one. The pressure is on
+them to understand the complex relationships among the variables and to then
+provide actionable recommendations. 
 
 This workshop is intended to be a practical introduction to healthcare analytics
 in `R`. The intention is for it to be quite self-contained. Hence it will start
@@ -29,11 +30,22 @@ Centre.
 ## Topics:
 1. Overview of Descriptive Statistics and Inference.
 2. Data Visualisation with `R`.
+* Overview of Grammar of Graphics
+* Lattice plots with `ggplot2` or `lattice` library.
+* Dashboarding and interactive plots with `shiny`.
+* Animating plots with `animate`.
 3. Workflow-based Data Mining with `R`.   
 
 ## Target Audience:
+The target audience are healthcare analytics professionals, looking for ways to
+increase their efficiency in understanding and visualising their data.
 
 ## Level of material covered. (could be combined with Topics)
+Topic 2 will start with basic commands and build on them to an intermediate
+level. A rough gauge would be that 50 - 60 % of the material is at an
+intermediate level, but it would be accessible by anyone with basic familiarity
+with `R`, or by anyone who carries out statistical analysis with a statistical
+language of some sort.
 
 ## Speaker Bios:
 Vik Gopal obtained his PhD from the University of Florida, with a dissertation
