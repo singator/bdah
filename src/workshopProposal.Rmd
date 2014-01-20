@@ -1,57 +1,54 @@
-# BDAH 2014 Workshop Proposal
+# Workshop Title: Case-Study Based Introduction to Healthcare Analytics with `R`
 
-## Summary:
-Increasingly, healthcare professionals are faced with larger and larger
-datasets, hence the need for conferences such as this one. The pressure is on
-them to understand the complex relationships among the variables and to then
-provide actionable recommendations. 
 
-This workshop is intended to be a practical introduction to healthcare analytics
-in `R`. The intention is for it to be quite self-contained. Hence it will start
-with an overview of the technical background requried for the workshop. Then it
-will cover an essential tool for exploring the data: visualisation. Through
-visualisations, one can gain a good intuition of the relationships within a
-dataset. (Viewed from different angles...) This section will consist of three
-types of visualisation techniques that can be used to explore a data-set, and
-that are readily available in `R`. The three tracks can be categorised as
-conditional plotting using the grammar of graphics, interactive charts, and
-animations. `R` packages that provide these capabilities will be introduced. 
+## Names, affiliations and locations of instructors
+1. Vik Gopal, Lecturer, Department of Statistics and Applied Probability, National University of Singapore
+2. Wu Dan, Team Lead, Healthcare Analytics Unit, Khoo Teck Puat Hospital, Singapore
 
-By focusing all three sections on one dataset, the attendee will be able to see
-the overall workflow of an analyst, and understand which tools to apply at which
-stage.
 
-## Speakers/Instructors:
-1. Dan Wu, Team Lead, Healthcare Analytics Unit, Khoo Teck Puat Hospital.
-2. Julian Lee, Founder, Singapore R User Group, Ex-researcher, National Cancer
-Centre.
-3. Vik Gopal, Lecturer, Department of Statistics and Applied Probability, NUS.
+## Opening summary
+Increasingly healthcare analytics professionals are faced with larger and more complex datasets. The pressure is on the analysts to understand the intricate relationships among many healthcare variables, and to then provide actionable insights.
 
-## Topics:
-1. Overview of Descriptive Statistics and Inference.
-2. Data Visualisation with `R`.
-* Overview of Grammar of Graphics
-* Lattice plots with `ggplot2` or `lattice` library.
-* Dashboarding and interactive plots with `shiny`.
-* Animating plots with `animate`.
-3. Workflow-based Data Mining with `R`.   
+This workshop aims to be a self-contained, practical and case-study based introduction to healthcare analytics with open-source `R`. We start by learning sufficient programming fundamentals of `R` necessary for the workshop. Subsequently, we cover an essential tool for exploratory data analysis (EDA) --- visualization --- through which we can gain a good intuition of variable relationships in a dataset. This section consists of three types of visualization techniques: conditional plotting by applying the "grammar of graphics", interactive dashboards and animations. EDA encourages an analyst to first have an intimate understanding of the data, and then possibly formulate hypotheses that may lead to new data collection and experiments. Therefore, in the final section, we learn how to draw inferences about population parameters by testing hypotheses about them using appropriate sample statistics. This section consists of inferential methods applied to one and more samples, and to continuous and categorical data.
 
-## Target Audience:
-The target audience are healthcare analytics professionals, looking for ways to
-increase their efficiency in understanding and visualising their data.
+Concepts in all three sections of the workshop will be illustrated with one consistent real-world healthcare dataset. The attendees therefore are able to see the overall work flow of an analyst, and understand which `R` packages and functions to apply at different stages of the case study.
 
-## Level of material covered. (could be combined with Topics)
-Topic 2 will start with basic commands and build on them to an intermediate
-level. A rough gauge would be that 50 - 60 % of the material is at an
-intermediate level, but it would be accessible by anyone with basic familiarity
-with `R`, or by anyone who carries out statistical analysis with a statistical
-language of some sort.
 
-## Speaker Bios:
-Vik Gopal obtained his PhD from the University of Florida, with a dissertation
-on running Markov chains in parallel. Upon graduation, he joined the IBM
-Research Collaboratory in Singapore and worked with government agencies on
-traffic prediction and weather modeling problems. He is currently working at NUS
-as a lecturer in the department of statistics. He is an ardent fan of `R` due to
-it's vast library of user-contributed statistical routines and excellent
-visualisation capailities.
+## Outline of topics
+1. Overview of `R` fundamentals
+2. Exploratory data analysis
+  * "Grammar of graphics" overview with `ggplot2`
+  * Interactive dashboards with `Shiny`
+  * Animating plots with `animate`
+3. Inferential data analysis
+  * Hypothesis testing involving one or more samples
+  * Analysis of variance
+  * Nonparametric methods
+  * Inference on proportions and contingency tables
+  * Linear regression and logistic regression
+
+
+## Specific educational objectives
+I thought this section should be the same as the outline of topics, unless we discuss how the hands-on portions of the workshop could benefit the attendees. What do you think?
+
+
+## Who should attend
+* Healthcare analytics professionals
+* Clinicians
+* Health services researhers
+* Healthcare policy makers
+* Healthcare IT professionals
+* Anyone who wishes to improve his/her ability in understanding, interpreting and visualizing healthcare data
+* Anyone who is a current user of SPSS, SAS, Stata and so on but wish to learn more about `R` 
+
+
+## Level of the content
+* Section 1 (20% of all content): basic 
+* Section 2 (40% of all content): intermediate
+* Section 3 (40% of all content): intermediate
+
+
+## Experience of presenters in teaching similar content, including short CVs
+Vik Gopal obtained his PhD from the University of Florida, with a dissertation on running Markov chains in parallel. Upon graduation, he joined the IBM Research Collaboratory in Singapore and worked with government agencies on traffic prediction and weather modeling problems. Vik is currently working at the National University of Singapore as a Lecturer in the Department of Statistics and Applied Probability. He is an ardent fan of `R` due to its vast library of user-contributed statistical routines and excellent visualization capabilities. *(Vik, did you teach `R` at NUS, say in ST3247? If so, it would be useful to mention that. Also, good to mention that you taught/presented at useR! 2013)*
+
+Wu Dan is currently the Team Lead of Healthcare Analytics Unit at Khoo Teck Puat Hospital (KTPH), Alexandra Health, Singapore. Working with a team of data scientists, Dan oversees projects in predictive analytics and operations research that generate actionable insights to enable better patient care. In Dan's previous job at the Quality Management Office at KTPH, he coordinated the implementation of National Standards of Healthcare and patient safety improvement projects to close quality gaps at the Hospital. Prior to KTPH, Dan was the Secretariat Manager of the Singapore Healthcare Management Consortium, a strategic alliance supported by the International Partners Program of International Enterprise Singapore. Dan uses `R` in his work, and conducted sharing sessions on healthcare Six Sigma with `R` at the International Conference on Big Data and Analytics in Healthcare 2013, Healthcare Quality Society of Singapore Quality Forum 2013, and Singapore `R` User Group.
