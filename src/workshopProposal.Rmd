@@ -29,8 +29,16 @@ Concepts in all three sections of the workshop will be illustrated with one cons
 
 
 ## Specific educational objectives
-I thought this section should be the same as the outline of topics, unless we discuss how the hands-on portions of the workshop could benefit the attendees. What do you think?
-
+1. The primary objective is to get users (including those who are new to the
+language) to a level where they can comfortably carry out the following tasks in
+`R`:
+  * EDA of a dataset via visualisations.
+  * Basic inference and modeling.
+2. To assist in the primary objective, we shall share all our codes on github
+before the workshop itself. We trust that this will help to overcome any initial
+barriers to using or switching to `R`. By studying/modifying our code, users
+will be able to carry out similar analyses on their own datasets almost
+immediately.
 
 ## Who should attend
 * Healthcare analytics professionals
