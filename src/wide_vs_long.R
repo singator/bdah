@@ -13,6 +13,7 @@ names(fhs.wide) <- toupper(names(fhs.wide))
 # The wide dataset does not seem to have the difference between the recorded 
 # either (column TIME in long format)
 # The wide dataset uses time in years whereas the long format uses time in days.
+# It is recommended to use the long format.
 
 # The following command converts the wide format into a long format, that we 
 # can use for comparison.
