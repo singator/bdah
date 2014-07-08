@@ -6,7 +6,33 @@ date: July 22, 2014
 #### Marina Bay Sands
 #### BDAH 2014
 
+Outline
+===
+- Introduction to Framingham Heart Study
+- RStudio Overview
+  + Required versions and packages
+- Data Manipulation with `dplyr`
+- The Grammar of Graphics with `ggplot2`
+- Interactive Plots with `shiny`
 
+Outline
+===
+- **Introduction to Framingham Heart Study**
+- RStudio Overview
+  + Required versions and packages
+- Data Manipulation with `dplyr`
+- The Grammar of Graphics with `ggplot2`
+- Interactive Plots with `shiny`
+
+The Framingham Heart Study (FHS)
+===
+- Long term study of Cardiovascular Disease (CVD) among subjects in Framingham.
+- Started in 1948 with 5209 subjects.
+- Patients examined every 2 years for
+  + Clinical examination data
+  + Cardiovascular outcomes
+- More information about the study can be found at the FHS
+  [official website](http://www.framinghamheartstudy.org/)
 
 First Slide
 ========================================================
