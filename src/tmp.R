@@ -248,9 +248,46 @@ p2 + geom_bar(position="fill") + facet_grid(SEX ~ age.cat)
 p3 <- ggplot(fhs.only1, aes(x=TOTCHOL, y=BMI, col=factor(HOSPMI)))
 p3 + geom_point() + facet_grid(SEX ~ age.cat)
 
+
+# THese are the subjects who were present at period 3.
 fhs.only3 <- filter(fhs.long, PERIOD==3)
 fhs.only3 <- transform(fhs.only3, age.cat=cut(AGE, breaks=c(30,44,54,64,74,84)))
 
 p4 <- ggplot(fhs.only3, aes(x=LDLC, y=BMI, col=factor(CVD)))
 p4 + geom_point() + facet_grid(SEX ~ age.cat)
 
+# These are all three periods of those that had three examinations.
+# ID 2448 was present at periods 1 and 3, so he/she was not present for all 3
+# examinations. The previous fhs.only3 should not be used here.
+exam.count <- table(fhs.long$RANDID)
+all3.id <- as.integer(names(exam.count[exam.count == 3]))
+
+fhs.all3 <- filter(fhs.long, RANDID %in% all3.id) %>% arrange(RANDID)
+
+fhs.smokers <- group_by(fhs.all3, RANDID) %>% 
+  summarise(sex=min(SEX),
+  age=min(AGE),
+  ave.cigpday=mean(CIGPDAY),
+  num.smoking=sum(CIGPDAY > 0),
+  death=max(DEATH),
+  angina=max(ANGINA),
+  hosp.mi=max(HOSPMI),
+  mi.fchd=max(MI_FCHD),
+  hyperten=max(HYPERTEN),
+  stroke=max(STROKE),
+  chd=max(ANYCHD),
+  cvd=max(CVD)) %>% 
+  transform(age.cat=cut(age, breaks=c(30,44,54,64,74,84)))
+
+p5 <- ggplot(fhs.smokers, aes(x=factor(num.smoking), fill=factor(chd)))
+p5 + geom_bar(position="fill") + facet_grid(sex ~ age.cat)
+
+## This portion shows a logistic regression for cig-smoking vs. chd.
+## This focuses on those who smoked for the 12 years running.
+## Suppose we focus on those aged between 55 and 65 years of age.
+## Keep this.
+fhs.smokers.3 <- filter(fhs.smokers, num.smoking == 3, age.cat == "(54,64]")
+
+p6 <- ggplot(fhs.smokers.3, aes(x=ave.cigpday, y=cvd))
+p6 + geom_point(position=position_jitter(height=0.05)) + 
+  stat_smooth(method="glm", family="binomial") +  facet_grid(sex ~ .)
