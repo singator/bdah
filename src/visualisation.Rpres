@@ -1,0 +1,33 @@
+Visualisation with R
+========================================================
+author: Vik Gopal and Wu Dan
+date: July 22, 2014
+
+#### Marina Bay Sands
+#### BDAH 2014
+
+
+
+First Slide
+========================================================
+
+For more details on authoring R presentations click the
+**Help** button on the toolbar.
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+Slide With Code
+========================================================
+
+```{r}
+summary(cars)
+```
+
+Slide With Plot
+========================================================
+
+```{r, echo=FALSE}
+plot(cars)
+```
