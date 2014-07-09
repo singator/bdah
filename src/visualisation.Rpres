@@ -333,8 +333,11 @@ Our Dataset
 directory to be one level up from the `data/` and `src/` folders. Now run the
 following on the console.   
 ```{r}
-fhs.long <- read.csv("../data/frmgham2.csv", header=TRUE)
-library(dplyr) ## We need this from now on.
+fhs.long <- 
+  read.csv("../data/frmgham2.csv", 
+ header=TRUE)
+## We need this from now on.
+library(dplyr) 
 ```   
 - Within panel 3 of RStudio, click on the *Environment* tab.  
 - Click on the spreadsheet icon next to the `fhs.long` object.  
@@ -480,3 +483,193 @@ type: subsection
 - The Grammar of Graphics with `ggplot2`
 - Interactive Plots with `shiny`
 
+Extracting The Data for Goal 1
+===
+The `cut()` function in R divides a numeric variable into categories.
+```{r}
+fhs.only1 <- 
+  filter(fhs.long, PERIOD==1) %>% 
+  mutate(AGE.CAT=cut(AGE, 
+  breaks=c(30,44,54,64,74,84)))
+head(fhs.only1[,c("RANDID","PERIOD", "AGE.CAT")])
+```
+
+Getting More Help
+===
+For more details and examples on the `dplyr` package, take a look at the
+documentation that is included with the package.
+
+```{r eval=FALSE}
+vignette('introduction')
+```
+
+Outline
+===
+type: section
+
+- Introduction to Framingham Heart Study
+- R and RStudio
+  + Installation
+  + R Basics
+- Data Manipulation with `dplyr`
+  + Data Manipulation Verbs
+  + Manipulating the FHS Data
+- **The Grammar of Graphics with `ggplot2`**
+  + Elements of a Graphic
+- Interactive Plots with `shiny`
+
+Outline
+===
+type: subsection
+- Introduction to Framingham Heart Study
+- R and RStudio
+  + Installation
+  + R Basics
+- Data Manipulation with `dplyr`
+  + Data Manipulation Verbs
+  + Manipulating the FHS Data
+- The Grammar of Graphics with `ggplot2`
+  + **Elements of a Graphic**
+- Interactive Plots with `shiny`
+
+The Grammar of Graphics
+===
+- The grammar of graphics is an abstract way of thinking about plots and
+  graphics.
+- It introduces a language for specifying what plot to make.
+- It is based on certain building blocks that define different aspects of a
+  plot.
+
+Motivating Example 1
+===
+```{r}
+x <- c(1,2)
+y <- c(2,4)
+```
+```{r echo=FALSE}
+plot(x,y, 
+  xlim=c(0,4), 
+  ylim=c(1,5), 
+  cex=2, col="red")
+```
+***
+
+- What was the **data** plotted?
+- Which variable was **mapped** to the x-axis and which to the y-axis?
+- What **objects** were plotted? Points? Lines?
+- Were they **transformed** before plotting in any way?
+
+Motivating Example 2
+===
+```{r}
+x <- c(1,2)
+y <- c(2,4)
+z <- c("A","B")
+```
+```{r echo=FALSE}
+plot(x,y, 
+  xlim=c(0,4), 
+  ylim=c(1,5), pch=19,
+  cex=2, col=c("red","green"))
+```
+***
+
+- What was the **data** plotted?
+- Which variable was **mapped** to the x-axis, which to the y-axis and which to
+  colour?
+- What **objects** were plotted? Points? Lines?
+- Were they **transformed** before plotting in any way?
+
+Motivating Example 3
+===
+```{r}
+set.seed(1)
+x <- rnorm(1000)
+```
+```{r echo=FALSE}
+hist(x, col="steelblue", border="red", bins=20)
+```
+***
+
+- What was the **data** plotted?
+- Which variable was **mapped** to the x-axis?
+- What **objects** were plotted? Points? Lines? A histogram?
+- Were they **transformed** before plotting in any way? 
+  - Yes, binning was carried out first.
+
+Defining Layers
+===
+Graphics are viewed as layers, with each consisting of 4 elements:
+
+1. Data  
+2. A mapping between variables and aesthetics (e.g. color, shape, size, etc.)   
+3. Geometric objects (e.g. points, lines, bars, boxes, etc.)   
+4. Statistical transformation (e.g. smoothing, binning, etc.)  
+
+Different layers can be added to the same plot.
+
+Outline
+===
+type: subsection
+- Introduction to Framingham Heart Study
+- R and RStudio
+  + Installation
+  + R Basics
+- Data Manipulation with `dplyr`
+  + Data Manipulation Verbs
+  + Manipulating the FHS Data
+- The Grammar of Graphics with `ggplot2`
+  + Elements of a Graphic
+  + **Using `ggplot2`**
+- Interactive Plots with `shiny`
+
+Creating Layers with ggplot2
+===
+- With `ggplot2`, one has to create an object that consists of individual
+  elements.
+- These elements should add up to one or more layers.
+- Every time a layer is added, not all elements need to be specified. If certain
+  elements are left out, the default or previously specified ones are used.
+
+Towards Goal 1.
+===
+- Goal 1 consists of a series of bar plots, with different colours for whether
+  or not an individual had a stroke.
+- What goes on the x-axis and what goes on the y-axis?
+- Let us give this a try.
+```{r}
+library(ggplot2)
+p2 <- ggplot(fhs.only1, aes(x=factor(HYPERTEN), 
+  fill=factor(STROKE)))
+```
+-  This creates an object with the data component (*fhs.only1*) and three
+   mappings(*x-axis* and *fill colour*).
+
+Towards Goal 1
+===
+right:70
+
+Now let us add the object we intend to plot.
+
+*** 
+
+```{r}
+p2 + 
+geom_bar(position="fill")
+```
+
+Achieving Goal 1
+===
+We still need to condition on SEX and AGE.CAT. For this, we use the
+`facet_grid()` specification.
+```{r fig.width=15}
+p2 + geom_bar(position="fill") + 
+  facet_grid(SEX ~ AGE.CAT)
+```
+
+Exercise 4
+===
+Try recreating this plot:
+```{r echo=FALSE, fig.width=12}
+p2 + geom_bar(position="dodge") + facet_grid(SEX ~ .)
+```
