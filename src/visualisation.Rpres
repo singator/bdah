@@ -8,18 +8,12 @@ date: July 22, 2014
 
 Outline
 ===
-- Introduction to Framingham Heart Study
-- RStudio Overview
-  + Required versions and packages
-- Data Manipulation with `dplyr`
-- The Grammar of Graphics with `ggplot2`
-- Interactive Plots with `shiny`
+type: section
 
-Outline
-===
 - **Introduction to Framingham Heart Study**
-- RStudio Overview
-  + Required versions and packages
+- R and RStudio
+  + Installation
+  + R Basics
 - Data Manipulation with `dplyr`
 - The Grammar of Graphics with `ggplot2`
 - Interactive Plots with `shiny`
@@ -34,26 +28,300 @@ The Framingham Heart Study (FHS)
 - More information about the study can be found at the FHS
   [official website](http://www.framinghamheartstudy.org/)
 
-First Slide
-========================================================
+Some Findings of the FHS
+===
+- Over 1000 medical papers have been published using the data from the FHS.
+- The study has uncovered or confirmed several risk factors for CVD:
+  + High blood pressure
+  + Obesity
+  + Cigarette smoking
+- The study has also shown there are differences in cardiovascular risk between
+  men and women.
 
-For more details on authoring R presentations click the
-**Help** button on the toolbar.
+Our Dataset
+===
+- We have a subset of the original dataset, pertaining to 4434 patients.
+- Each of these patients was followed for a total of 24 years, but we only have
+  data on their clinical examinations for a period of 6 years, spanning 1956 to 1968. 
+  + The data is provided in Longitudinal form.
+  + Each participant has 1 to 3 observations.
+  + There are a total of 11627 rows in the data.
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+Columns in Our Dataset
+===
+Here are the *first six columns and rows* of our dataset:
+```{r echo=FALSE}
+library(dplyr)
+library(ggplot2)
+fhs.long <- read.csv("../data/frmgham2.csv")
+head(fhs.long[,1:6])
+```
+- `RANDID` refers to the patient id.
+- The remaining columns are measurements on the patients during their
+  examinations, and outcome measures. 
 
-Slide With Code
-========================================================
+Measurements in Our Dataset
+===
+incremental: true
+1. ***SEX*** = 1 for males and 2 for females.   
+2. ***PERIOD*** = an integer between 1 and 3 denoting the examination number.  
+3. ***AGE*** = age at examination (in years).  
+4. ***SYSBP, DIABP*** = systolic and diastolic blood pressure.   
+5. ***CIGPDAY*** = number of cigarettes smoked per day.   
+6. ***BMI*** = Body Mass Index.
+7. ***LDLC*** = Low density cholesterol.
+8. ***TOTCHOL*** = total cholesterol.
 
+Outcome Measures in Our Dataset
+===
+incremental: true
+1. ***STROKE*** = 1 if patient experienced a stroke during the 12 years and 0
+otherwise.   
+2. ***ANYCHD*** = 1 if patient experienced a Coronary Heart Disease during the
+12 years and 0 otherwise.   
+3. ***CVD*** = 1 if patient experienced a Cerebrovascular Disease during the
+12 years and 0 otherwise.   
+4. ***HYPERTENSION*** = 1 if patient has hypertension, which is defined to be
+Systolic greater than 140mmHg or Diastolic greater than 90mmHg.
+
+Outline
+===
+type: section
+
+- Introduction to Framingham Heart Study
+- **R and RStudio**
+  + Installation
+  + R Basics
+- Data Manipulation with `dplyr`
+- The Grammar of Graphics with `ggplot2`
+- Interactive Plots with `shiny`
+
+Outline
+===
+type: subsection
+
+- Introduction to Framingham Heart Study
+- R and RStudio
+  + **Installation**
+  + R Basics
+- Data Manipulation with `dplyr`
+- The Grammar of Graphics with `ggplot2`
+- Interactive Plots with `shiny`
+
+Installing R
+===
+- Go to [CRAN](http://cran.r-project.org "Comprehensive R Archive Network").
+- Click on the link corresponding to your OS.
+- **Please install R version 3.1.0 for this workshop.**
+
+*If you are using OS X, it is highly recommended that you install the version
+for Snow Leopard rather than Mavericks.*
+
+About RStudio
+===
+incremental: true
+- RStudio is an Integrated Development Environment (IDE) developed specifically
+  for R coding.
+- It is free, and provides a familiar interface to programmers with features
+  such as 
+  + Execution of source code directly from the source editor.
+  + Syntax highlighting and code completion.
+  + History of plots, commands and help files.
+- It is certainly good for a newcomer to R, but it is also the environment of
+  choice for many advanced users.
+
+Installing RStudio
+===
+- Go to [RStudio](http://www.rstudio.com/ide/download/ "RStudio Downloads")
+- Download the **RStudio Desktop** and install the appropriate version for your
+  OS.
+- **Please install at least version 0.98.932 for this workshop.**
+
+***
+
+![Not found](rstudio_install.png)
+
+Navigating RStudio
+===
+![Not found](rstudio_panels_1.png "RStudio Panels")
+
+<small>
+1. Console  
+2. Source code editor  
+3. History panel  
+4. Plot/Help/Package Installation panel  
+</small>
+
+Required R Packages
+===
+incremental: true
+Make sure you have the following packages installed for this workshop:
+
+1. dplyr    
+2. ggplot2   
+3. shiny    
+
+Use the *Packages* tab in panel number 4, and make sure that all dependencies
+are installed as well.
+
+Ready To Go? (dplyr and ggplot2)
+===
+Checking on `dplyr`:
+```{r eval=TRUE}
+library(dplyr)
+```
+Checking on ggplot2:
 ```{r}
-summary(cars)
+library(ggplot2)
 ```
 
-Slide With Plot
-========================================================
+Ready To Go? (shiny test)
+===
+1. Open RStudio, go to *File > New File > R Markdown*   
+2. Select **Shiny** on the left.
+3. Fill in the **Title** and **Author** fields and click OK.
+![Not found](Shiny_create.png)
 
-```{r, echo=FALSE}
-plot(cars)
+Ready To Go? (shiny success)
+===
+1. Save the newly created file in the console.  
+2. Click on **Run Document**.  
+
+***
+
+![Not found](Shiny_success.png)
+
+Outline
+===
+type: subsection
+
+- Introduction to Framingham Heart Study
+- R and RStudio
+  + Installation
+  + **R Basics**
+- Data Manipulation with `dplyr`
+- The Grammar of Graphics with `ggplot2`
+- Interactive Plots with `shiny`
+
+R Data Objects
+===
+- R is a language for statistical computing.
+- Statistics is about understanding data.
+- Hence we need to know a little about how R represents data.
+- The main data structures that R uses are 
+  + vectors,
+  + matrices and
+  + data frames.
+
+Vectors
+===
+- R has no scalars, only **vectors**.
+- Think of a vector as an ordered string of *things that are alike*. These
+  *things* could be 
+  + integers,
+  + real numbers,
+  + words, and so on and so forth.
+- Here's how we create and print vectors in R.
+```{r}
+Z <- c(7.3,2,13.1)
+Z
 ```
+- The `c()` function stands for `catenate`.
+
+Accessing Elements in a Vector
+===
+- The `:` operator creates a sequence of integers, which can then be used to
+  access individual elements in a vector.
+```{r}
+Z[1:2]
+```
+- When a negative sign is added in front, it means that the values at these
+  indices should be dropped.
+```{r}
+Z[-(1:2)]
+```
+
+Exercise 1
+===
+Try out the following tasks, that pertain to vectors.
+
+1. Run the following code, and try to figure out what it does:
+```{r eval=FALSE}
+Z[c(1,3)]
+```
+How is it different from `Z[-2]`?  
+2. The expression `1:5` creates the vector `c(1,2,3,4,5)`. What does `5:1` do?  
+3. How can we create a vector `c(1.2, 2.2, 3.2, 4.2)`?  
+
+Matrices
+===
+- Matrices are 2-dimensional arrays with all elements of the same type. 
+```{r}
+mymat <- matrix(1:9, nrow=3, ncol=3)
+mymat
+```
+- Matrix elements are accessed with the same syntax as vectors, except that
+  there is a comma to separate the column and row references.
+
+Accessing Elements Within a Matrix
+===
+- Accessing the element in row 3 and column 2:
+```{r}
+mymat[3,2]
+```
+- Accessing row 3:
+```{r}
+mymat[3, ]
+```
+
+Accessing Elements Within a Matrix
+===
+- Accessing columns 2 and 3 of rows 1 and 3:
+```{r size="tiny"}
+mymat[c(1,3), c(2,3)]
+```
+
+Data Frames
+===
+incremental: true
+- A data frame is the common construct used to store data in R.
+- It is very similar to a matrix, and the syntax to access the elements is
+  identical to that of a matrix.
+- The difference is this:
+  + Within columns, the elements are all alike.
+  + However, the columns are not all of the same type.
+- Let's look at an example.
+
+Creating Data Frames
+=== 
+The following code creates a data frame:
+```{r}
+tea.type <- c("black", "red", "green")
+cost <- c(4, 5, 5.5)
+tea.df <- data.frame(cost, tea.type)
+tea.df
+```
+- As is clear, one column consists of numerals, whereas the other consists of
+  characters or words.
+
+Exercise 2
+===
+1. Retrieve the element in row 3 and column 2 of the `tea.df` data frame.  
+2. What does the following expression return?
+```{r eval=FALSE}
+tea.df$cost
+```
+
+Outline
+===
+type: section
+
+- Introduction to Framingham Heart Study
+- R and RStudio
+  + Installation
+  + R Basics
+- **Data Manipulation with `dplyr`**
+- The Grammar of Graphics with `ggplot2`
+- Interactive Plots with `shiny`
+
+
