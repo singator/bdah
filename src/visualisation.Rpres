@@ -20,6 +20,7 @@ type: section
 
 The Framingham Heart Study (FHS)
 ===
+navigation: section
 - Long term study of Cardiovascular Disease (CVD) among subjects in Framingham.
 - Started in 1948 with 5209 subjects.
 - Patients examined every 2 years for
@@ -321,7 +322,161 @@ type: section
   + Installation
   + R Basics
 - **Data Manipulation with `dplyr`**
+  + Data Manipulation Verbs
+  + Manipulating the FHS Data
 - The Grammar of Graphics with `ggplot2`
 - Interactive Plots with `shiny`
 
+Our Dataset
+===
+- Within RStudio, go to *Session > Set Working Directory* and set the working
+directory to be one level up from the `data/` and `src/` folders. Now run the
+following on the console.   
+```{r}
+fhs.long <- read.csv("../data/frmgham2.csv", header=TRUE)
+library(dplyr) ## We need this from now on.
+```   
+- Within panel 3 of RStudio, click on the *Environment* tab.  
+- Click on the spreadsheet icon next to the `fhs.long` object.  
+
+Our Immediate Target
+===
+- We need to extract the subset of data that we need for Goal 1.
+- Recall that our dataset contains 1 to 3 visits for each subject.
+- We need to extract only the information for the first visit, and also to
+  create the age categories.
+- Our final dataset should look something like this:
+```{r eval=FALSE}
+SEX HYPERTEN STROKE CVD AGE.CAT PERIOD
+  1   0         1    1  (30,44]   1
+  2   1         0    0  (44,54]   1
+  2   0         0    0  (30,44]   1
+```
+where each row corresponds to a different `RANDID`.
+
+Outline
+===
+type: subsection
+
+- Introduction to Framingham Heart Study
+- R and RStudio
+  + Installation
+  + R Basics
+- Data Manipulation with `dplyr`
+  + **Data Manipulation Verbs**
+  + Manipulating the FHS Data
+- The Grammar of Graphics with `ggplot2`
+- Interactive Plots with `shiny`
+
+Filtering Data
+===
+- `filter()` is for selecting a subset of rows.
+- The criteria will be based on the columns already in the data.
+- Suppose we wanted all patients who had hypertension.
+```{r}
+out <- filter(fhs.long, HYPERTEN == 1)
+head(out[, c("RANDID", "PERIOD", "HYPERTEN")])
+```
+
+Filtering Data
+===
+- Suppose we wanted all patients who had hypertension but not CVD, and whose BMI
+  was greater than 25.
+```{r}
+out <- filter(fhs.long, HYPERTEN == 1, CVD == 0, BMI > 25)
+head(out[, c("RANDID", "PERIOD", "HYPERTEN", "CVD", "BMI")])
+```
+
+Filtering Data
+===
+- Suppose we wanted all patients who had hypertension or CVD.
+```{r}
+out <- filter(fhs.long, HYPERTEN == 1 | CVD == 1)
+head(out[, c("RANDID", "PERIOD", "HYPERTEN", "CVD")])
+```
+
+Selecting Columns
+===
+- If we wish to select only a few columns to work with, we can use the
+  `select()` verb.
+- Suppose we wished to select only the columns AGE, SYSBP and DIABP.
+```{r}
+out <- select(fhs.long, AGE, SYSBP, DIABP)
+head(out)
+```
+
+Selecting Columns
+===
+- Many times, we wish to select a set of columns that are contiguous.
+- We can then use the `:` operator.
+- This can save us a lot of typing.
+```{r}
+out <- select(fhs.long, AGE:DIABP)
+head(out)
+```
+
+Mutating Columns
+===
+- Often, we need to transform a particular column(s) to result in a new column.
+- We can achieve this with the `mutate()` operator.
+- Suppose we wish to take the log of TOTCHOL.
+```{r}
+out <- mutate(fhs.long,
+  LOG.TOTCHOL = log(TOTCHOL))
+head(out[, c("RANDID", "TOTCHOL", "LOG.TOTCHOL")])
+```
+
+Summarising Columns
+===
+- Finally, we can `summarise()` a column using functions that take in a vector
+  and return a **single** value.
+- We shall see the value of this verb in a short while.
+```{r}
+summarise(fhs.long, mean.BMI = mean(BMI, na.rm=TRUE)) 
+```
+
+Exercise 3
+===
+1. Create a data frame that only contains subjects that died.
+2. Create a data frame that contains only period 1 examinations for patients who
+were above 50 years of age at the time.
+3. Add a new column that contains the difference between DIABP and SYSBP.
+
+
+Splitting Into Groups
+===
+- The `group_by()` operator can be used to split the data frame into groups.
+```{r}
+fhs.tmp <- filter(fhs.long, PERIOD == 3)
+fhs.tmp <- select(fhs.tmp, AGE, BMI, SEX, 
+  HYPERTEN)
+fhs.tmp <- group_by(fhs.tmp, SEX, HYPERTEN)
+summarise(fhs.tmp, 
+  mean.BMI = mean(BMI, na.rm=TRUE)) 
+```
+
+Daisy-chaining Operations
+===
+- Notice how we kept re-assigning the output to `fhs.tmp` earlier?
+```{r}
+filter(fhs.long, PERIOD == 3) %>%
+select(AGE, BMI, SEX, HYPERTEN) %>% 
+group_by(SEX, HYPERTEN) %>% 
+summarise(mean.BMI = mean(BMI, 
+    na.rm=TRUE)) 
+```
+
+Outline
+===
+type: subsection
+
+- Introduction to Framingham Heart Study
+- R and RStudio
+  + Installation
+  + R Basics
+- Data Manipulation with `dplyr`
+  + Data Manipulation Verbs
+  + **Manipulating the FHS Data**
+- The Grammar of Graphics with `ggplot2`
+- Interactive Plots with `shiny`
 
