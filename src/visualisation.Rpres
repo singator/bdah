@@ -145,6 +145,7 @@ Installing RStudio
 Navigating RStudio
 ===
 ![Not found](rstudio_panels_1.png "RStudio Panels")
+![RStudio Panels](rstudio_panelsa.png "RStudio Panels")
 
 <small>
 1. Console  
@@ -469,6 +470,16 @@ summarise(mean.BMI = mean(BMI,
     na.rm=TRUE)) 
 ```
 
+Getting More Help
+===
+For more details and examples on the `dplyr` package, take a look at the
+documentation that is included with the package.
+
+```{r eval=FALSE}
+vignette('introduction')
+```
+
+
 Outline
 ===
 type: subsection
@@ -492,15 +503,6 @@ fhs.only1 <-
   mutate(AGE.CAT=cut(AGE, 
   breaks=c(30,44,54,64,74,84)))
 head(fhs.only1[,c("RANDID","PERIOD", "AGE.CAT")])
-```
-
-Getting More Help
-===
-For more details and examples on the `dplyr` package, take a look at the
-documentation that is included with the package.
-
-```{r eval=FALSE}
-vignette('introduction')
 ```
 
 Outline
@@ -673,3 +675,217 @@ Try recreating this plot:
 ```{r echo=FALSE, fig.width=12}
 p2 + geom_bar(position="dodge") + facet_grid(SEX ~ .)
 ```
+
+Towards Goal 2
+===
+- Focus on those who had smoked for entire duration of the 12 years.
+- Focus on those aged between 55 and 64 years of age.
+- Visualise the relationship between the average number of cigarettes per day
+  and CVD.
+- First, we need to extract the data in the format we need.
+
+Towards Goal 2 (Data Extraction)
+===
+- This code will extract the `RANDID` for those indivduals who were examined
+  three times.
+```{r}
+exam.count <- table(fhs.long$RANDID)
+all3.id <- as.integer(names(exam.count[exam.count == 3]))
+```
+
+Exercise 5
+===
+
+1. What is contained in the vector `all3.id`? Display the first 6 elements of
+it.   
+2. How many elements are there in the vector? Take a look at the `length`
+function in R. 
+
+Towards Goal 2 (Data Extraction)
+===
+Now let us use the `dplyr` functions to get what we need.
+```{r}
+fhs.smokers <- 
+  filter(fhs.long, RANDID %in% all3.id) %>% 
+  group_by(RANDID) %>% 
+  summarise(sex=min(SEX),
+    age=min(AGE),
+    ave.cigpday=mean(CIGPDAY),
+    num.smoking=sum(CIGPDAY > 0),
+    cvd=max(CVD)) %>% 
+  mutate(age.cat=cut(age, breaks=c(30,44,54,64,74,84)))
+```
+This gives us a data frame with one line for each subject who had been examined
+thrice.
+
+Towards Goal 2 (Data Extracted)
+===
+```{r}
+fhs.smokers.3 <- 
+  filter(fhs.smokers, 
+    num.smoking == 3, 
+    age.cat == "(54,64]")
+```
+Now we are ready to make the plot.
+
+Towards Goal 2
+===
+Recall that we need 4 elements in our layer.
+
+1. Our data will be `fhs.smokers.3`.   
+2. We shall map `ave.cigpday` to the x-axis and `cvd` to the y-axis.   
+3. We also need a smoothing transformation.
+
+Achieving Goal 2
+===
+```{r fig.width=11}
+p6 <- ggplot(fhs.smokers.3, 
+  aes(x=ave.cigpday, y=cvd))
+p6 + geom_point() +
+  stat_smooth(method="glm", 
+  family="binomial") +  
+  facet_grid(sex ~ .)
+```
+
+ 
+===
+type: section
+
+- Introduction to Framingham Heart Study
+- R and RStudio
+  + Installation
+  + R Basics
+- Data Manipulation with `dplyr`
+  + Data Manipulation Verbs
+  + Manipulating the FHS Data
+
+*** 
+
+- The Grammar of Graphics with `ggplot2`
+  + Elements of a Graphic
+  + Using `ggplot2`
+- **Interactive Plots with `shiny`**
+
+About Shiny
+===
+- Shiny introduces a new way of presenting your data and of exploring it.
+- Now, instead of a static document, you can provide your team or collaborator
+  with an interactive document.
+- This way, they can recreate your exploration phase instead of just seeing the
+  final plot.
+- This allows many more eyeballs on the data and can lead to more insights.
+
+Create A New Shiny Document
+===
+- Go to *File > New File > R Markdown*
+- Select *Shiny* from the list on the left, and fill in the title as *BDAH
+  visualisation workshop*.
+- Click *OK*.
+- A new file opens in panel 2 of RStudio.
+- Save this in your current directory with name of your choice, e.g. *BDAH_vik*
+- Delete everything below the second *---*.
+- Click on *Run Document* from within panel 2. You should see the next slide.
+
+The New, Blank Shiny Document
+===
+![Not found](BDAH_demo_1.png)
+
+Building Blocks
+===
+- A Shiny document consists of two parts
+- Widgets
+  + These are objects from which **inputs** are collected.
+- RenderXXXXX objects
+  + These are objects such as tables or plots, which change **every time** a
+    widget is changed.
+
+Widgets
+===
+- There are several different kinds of widgets available:
+  + `checkboxInput`
+  + `dateInput`
+  + `fileInput`
+  + `numericInput`
+  + `radioButtons`
+  + `sliderInput`
+  + `textInput`
+- The first argument to all these functions will be a name that we shall use to
+  retrieve the input that it collects.
+- Take a look at their help pages for more information for the additional
+  arguments to these functions.
+
+Render Objects
+===
+- These are a family of objects that **update** whenever a widget value changes.
+- There are several kinds:
+  + renderDataTable
+  + renderImage
+  + renderPlot
+  + renderText
+- Now let's create a simple shiny document with these objects!
+
+Combining Widgets and Render Objects
+===
+The overall structure of a shiny document is:
+```{r eval=FALSE}
+#### Some text to describe the document.
+
+inputPanel(
+  ...
+  widgets go here...
+  ...
+)
+
+renderPlot( 
+  ...
+  use widget values to make plot(s)
+  ...
+)
+
+#### More text follows.
+```
+
+Input Panel 1
+===
+Add the following lines to the first input panel section
+```{r eval=FALSE}
+radioButtons("x_var", 
+  label="Explanatory Variable", 
+  choices=c("BMI", "LDLC", "TOTCHOL"), 
+  selected="BMI"),
+  
+radioButtons("y_var", 
+  label="Response Variable", 
+  choices=c("CVD", "STROKE", 
+  "ANYCHD"), selected="CVD"),
+  
+checkboxInput("con_gender", 
+  label="Condition on Gender", 
+  value=FALSE)
+```
+
+Input Panel 2
+===
+Add the following lines to the second input panel section
+```{r eval=FALSE}
+sliderInput("bmi_range", label="BMI range", 
+  min=10, max=60, value=c(10,60)),
+sliderInput("ldlc_range", label="LDLC range", 
+  min=20, max=565, value=c(20,565)),
+sliderInput("tot_range", 
+  label="Total Chol. range", min=112,
+  max=625, value=c(112,625))
+```
+
+Preparing the Data
+===
+- First, let us get the requisite data.
+- We are going to use only the data on the third visit of patients.
+- Add the following lines to your shiny document.
+```{r eval=FALSE}
+library(ggplot2)
+library(dplyr)
+fhs.long <- read.csv("data/frmgham2.csv")
+fhs.only3 <- filter(fhs.long, PERIOD==3)
+```
+
