@@ -1,4 +1,7 @@
-# Workshop Title: Case-Study Based Introduction to Healthcare Analytics with `R`
+---
+title: "Workshop Title: Case-Study Based Introduction to Healthcare Analytics with `R`"
+output: html_document
+---
 
 
 ## Names, affiliations and locations of instructors
