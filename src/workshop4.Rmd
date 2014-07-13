@@ -25,12 +25,21 @@ This workshop is the BDAH 2014 [Pre-Conference Workshop](http://chi.nus.edu.sg/c
 
 ## Synopsis {.smaller}
 
-Increasingly, healthcare analytics professionals are faced with larger and more complex datasets. The pressure is on the analysts to understand the intricate relationships among many healthcare variables, and to then provide actionable insights.
-
-This workshop aims to be a self-contained, practical and case-study based introduction to healthcare analytics with open-source R. We start by learning sufficient programming fundamentals of R necessary for the workshop. Subsequently, we cover an essential tool for exploratory data analysis (EDA) --- visualization --- through which we can gain a good intuition of variable relationships in a dataset. This section consists of three types of visualization techniques: conditional plotting by applying the "grammar of graphics", interactive dashboards and animations. EDA encourages an analyst to first have an intimate understanding of the data, and then possibly formulate hypotheses that may lead to new data collection and experiments. Therefore, in the final section, we learn how to draw inferences about population parameters by testing hypotheses about them using appropriate sample statistics. This section consists of inferential methods applied to one and more samples, and to continuous and categorical data.
-
-Concepts in all three sections of the workshop will be illustrated with one consistent real-world healthcare dataset. The attendees therefore are able to see the overall work flow of an analyst, and understand which R packages and functions to apply at different stages of the case study.
-
+*  Today's healthcare analytics professionals are under pressure to first
+   understand large and complex datasets, and to then recommend actions in a timely
+   fashion.
+*  In this workshop, we aim to use a single case-study and demonstrate how R can
+   be used to help in the above situation.
+*  The workshop is self-contained and assumes no prior R knowledge.
+*  The workshop will aim to cover:
+    * R fundamentals,
+    * Exploratory data analysis via visualisations, and 
+    * Basic statisical inference and modeling.
+*  By using a single case-study, we seek to demonstrate the overall work flow of
+   an analyst, with specific regard to R as his/her tool.
+*  All codes, slides and data will be available on
+  [github](https://github.com/singator/bdah) for attendees to refer to, modify
+  and freely use.
 
 <!--- 
 ## Outline
@@ -52,6 +61,7 @@ Concepts in all three sections of the workshop will be illustrated with one cons
 -->
 
 
+<!---
 ## Educational Objectives
 
 - The primary objective of this workshop is to get R users (including those who are new to R) to a level where they can comfortably carry out the following tasks:
@@ -61,6 +71,7 @@ Concepts in all three sections of the workshop will be illustrated with one cons
     - Basic inference and modeling
 
 - To assist in achieving the primary objective, the presenters will share all our R code on GitHub before the workshop itself. We trust that this approach will help overcome the initial barriers to using or switching to R. By studying and modifying our code, the attendees will be able to carry out similar analyses on their own datasets almost immediately.
+--->
 
 
 ## Speaker: Vik {.smaller}
@@ -76,8 +87,10 @@ Online profile: <br> <http://www.stat.nus.edu.sg/~stavg>
 
 Vik has been using R for close to 10 years now, and is an ardent fan due to its vast library of user-contributed statistical routines and excellent visualization capabilities. 
 
-Vik teaches R in his classes at NUS , and presented his R packages at useR! 2014 ([popKorn](http://user2014.stat.ucla.edu/abstracts/talks/122_Gopal.pdf): An R package for inference on selected populations) and useR! 2013 ([kPop](http://www.edii.uclm.es/~useR-2013/abstracts/files/37_selPop.pdf): An R package for the interval estimation of the mean of the selected populations).
-    
+Vik teaches R in his classes at NUS, and has presented his R packages at useR!
+2013 and 2014. His latest package popKorn is now available on
+[CRAN](http://cran.r-project.org/package=popKorn).
+
 </div>
 
 
@@ -96,6 +109,7 @@ Dan uses R in his work, and conducted sharing sessions on R for healthcare at Si
     
 </div>
 
+# PRE-WORKSHOP MATERIAL
 
 ## Install Latest [R](http://www.r-project.org) and [RStudio](http://www.rstudio.com) to Get Started 
 
@@ -109,6 +123,11 @@ Dan uses R in his work, and conducted sharing sessions on R for healthcare at Si
 - [`ggplot2`](http://cran.r-project.org/web/packages/ggplot2): An implementation of [*The Grammar of Graphics*](http://www.springer.com/statistics/computational+statistics/book/978-0-387-24544-7)
 
 - [`shiny`](http://cran.r-project.org/web/packages/shiny): A web application framework for R
+
+## How to install packages? 
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/u1r5XTqrCTQ?rel=0"
+frameborder="0" allowfullscreen></iframe>
 
 
 ## Optional: Why Is [RStudio](http://www.rstudio.com) Better than R Alone?
