@@ -1,6 +1,5 @@
-bdah
-====
+International Conference on Big Data and Analytics in Healthcare 2014 (BDAH 2014)
 
-Big Data Analytics 2014 Workshop
+Pre-conference Workshop #4: Case-Based Introduction to Healthcare Analytics with R
 
-This github contains material for the workshop above. Take a look at the wiki page for more information on the files.
+This GitHub repository contains materials for the workshop above. Take a look at the Wiki page for more information.
