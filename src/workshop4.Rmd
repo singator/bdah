@@ -1,5 +1,5 @@
 ---
-title: "Case-Based Introduction to Healthcare Analytics with R"
+title: "Case-based Introduction to Healthcare Analytics with R"
 author: "**Vik Gopal** (National University of Singapore) <br> **Wu Dan** (Khoo Teck Puat Hospital)"
 date: "22 July 2014"
 output:
@@ -44,7 +44,7 @@ This workshop is the BDAH 2014 [Pre-conference Workshop](http://chi.nus.edu.sg/c
 
 Increasingly, healthcare analytics professionals are faced with larger and more complex datasets. The pressure is on the analysts to understand the intricate relationships among many healthcare variables, and to then provide actionable insights.
 
-This workshop aims to be a self-contained, practical and case-study based introduction to healthcare analytics with open-source R. We start by learning sufficient programming fundamentals of R necessary for the workshop. Subsequently, we cover an essential tool for exploratory data analysis (EDA) --- visualization --- through which we can gain a good intuition of variable relationships in a dataset. This section consists of three types of visualization techniques: conditional plotting by applying the "grammar of graphics", interactive dashboards and animations. EDA encourages an analyst to first have an intimate understanding of the data, and then possibly formulate hypotheses that may lead to new data collection and experiments. Therefore, in the final section, we learn how to draw inferences about population parameters by testing hypotheses about them using appropriate sample statistics. This section consists of inferential methods applied to one and more samples, and to continuous and categorical data.
+This workshop aims to be a self-contained, practical and case-based introduction to healthcare analytics with open-source R. We start by learning sufficient programming fundamentals of R necessary for the workshop. Subsequently, we cover an essential tool for exploratory data analysis (EDA) --- visualization --- through which we can gain a good intuition of variable relationships in a dataset. This section consists of two types of visualization techniques: conditional plotting by applying the "grammar of graphics", and interactive graphs. EDA encourages an analyst to first have an intimate understanding of the data, and then possibly formulate hypotheses that may lead to new data collection and experiments. Therefore, in the final section, we learn how to draw inferences about population parameters by testing hypotheses about them using appropriate sample statistics. This section consists of inferential methods applied to one and more samples, and to continuous and categorical data.
 
 Concepts in all three sections of the workshop will be illustrated with one consistent real-world healthcare dataset. The attendees therefore are able to see the overall work flow of an analyst, and understand which R packages and functions to apply at different stages of the case study.
 
@@ -97,7 +97,7 @@ Online profile: <br> <http://www.linkedin.com/in/wudanprofile>
 
 Dan is a founding executive committee member of Healthcare Analytics Research and Technologies Singapore ([HEARTS](http://www.gai.nus.edu.sg/hearts)), and an executive committee member of Association for Medical and Bio-Informatics Singapore ([AMBIS](http://www.ambis.org.sg)).
 
-Dan uses R in his work, and conducted sharing sessions on R for healthcare at Singapore R User Group meetups, the International Conference on Big Data and Analytics in Healthcare 2013, and the Healthcare Quality Society of Singapore Quality Forum 2013.
+Dan uses R at work, and conducted sharing sessions on R for healthcare at Singapore R User Group meetups, the International Conference on Big Data and Analytics in Healthcare 2013, and the Healthcare Quality Society of Singapore Quality Forum 2013.
 
 </div>
 
@@ -119,12 +119,12 @@ Dan uses R in his work, and conducted sharing sessions on R for healthcare at Si
 - [`shiny`](http://cran.r-project.org/web/packages/shiny): A web application framework for R
 
 
-## How to Install Packages? 
+## How to Install Packages in RStudio? 
 
 <iframe width="420" height="315" src="http://www.youtube.com/embed/u1r5XTqrCTQ?rel=0" frameborder="0" allowfullscreen></iframe>
 
 
-## Optional: Why Is [RStudio](http://www.rstudio.com) Better than R Alone?
+## Optional: Why Is RStudio Better than R Alone?
 
 <iframe width="420" height="315" src="http://www.youtube.com/embed/3cLcgAbrUfk?rel=0" frameborder="0" allowfullscreen></iframe>
 
@@ -162,6 +162,8 @@ Dan uses R in his work, and conducted sharing sessions on R for healthcare at Si
 
 ![Marina Bay Sands Singapore](img/mbs.jpg "Marina Bay Sands Singapore")
 <br>
+
+Bring your laptop if you wish to have hands-on learning!
 
 Cheers,
 <br>
