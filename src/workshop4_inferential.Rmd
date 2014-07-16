@@ -1,0 +1,110 @@
+---
+title: "Case-based Introduction to Healthcare Analytics with R"
+author: "**Vik Gopal** (National University of Singapore) <br> **Wu Dan** (Khoo Teck Puat Hospital)"
+date: "22 July 2014"
+output:
+  ioslides_presentation:
+    logo: Rlogo.svg
+    self_contained: yes
+    widescreen: yes
+---
+
+<!---
+
+
+# EXPLORATORY DATA ANALYSIS
+
+
+## Desciptive statistics with categorical data {.flexbox .vcenter}
+
+```{r, message=FALSE}
+library(vcd)
+
+head(Arthritis)
+```
+
+
+## Desciptive statistics with categorical data | One-way table
+
+```{r}
+with(Arthritis, table(Improved))
+with(Arthritis, prop.table(table(Improved)))
+```
+
+
+## Desciptive statistics with categorical data | Two-way contigency table {.smaller}
+
+```{r}
+xtabs(~ Treatment + Improved, data = Arthritis)
+
+margin.table(xtabs(~ Treatment + Improved, data = Arthritis), 1)
+margin.table(xtabs(~ Treatment + Improved, data = Arthritis), 2)
+```
+
+
+## Desciptive statistics with categorical data | Two-way contigency table {.smaller}
+
+```{r}
+# addmargins(xtabs(~ Treatment + Improved, data = Arthritis), margin = 1)
+# addmargins(xtabs(~ Treatment + Improved, data = Arthritis), margin = 2)
+addmargins(xtabs(~ Treatment + Improved, data = Arthritis))
+
+# prop.table(xtabs(~ Treatment + Improved, data = Arthritis), 1)
+# prop.table(xtabs(~ Treatment + Improved, data = Arthritis), 2)
+prop.table(xtabs(~ Treatment + Improved, data = Arthritis))
+```
+
+
+## Desciptive statistics with categorical data | Two-way contigency table {.smaller}
+
+```{r}
+library(gmodels)
+with(Arthritis, CrossTable(Treatment, Improved, prop.r = F, prop.c = F, prop.t = F, prop.chisq = F))
+```
+
+
+## Desciptive statistics with categorical data | Two-way contigency table
+
+```{r}
+library(reshape2)
+dcast(Arthritis, Treatment ~ Improved)
+```
+
+
+## Desciptive statistics with categorical data | N-way contigency table
+
+```{r}
+ftable(xtabs(~ Treatment + Sex + Improved, data = Arthritis))
+```
+
+
+-->
+
+
+# INFERENTIAL STATISTICS
+
+
+## "Philosophy" {.build}
+
+- This is NOT graduate level stats class.
+
+- Rule
+
+- Rule
+
+
+## Slide Title...
+
+```{r message=FALSE}
+fhs <- read.csv("../data/fhs.csv")
+with(fhs, summary(bmi1))
+
+library(Hmisc)
+with(fhs, describe(bmi1)) # Hmisc::describe
+
+library(psych)
+with(fhs, describe(bmi1)) # psych::describe
+```
+
+
+

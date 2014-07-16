@@ -4,7 +4,7 @@ author: "**Vik Gopal** (National University of Singapore) <br> **Wu Dan** (Khoo 
 date: "22 July 2014"
 output:
   ioslides_presentation:
-    logo: Rlogo.svg
+    logo: ./img/Rlogo.svg
     self_contained: yes
     widescreen: yes
 ---
@@ -32,7 +32,7 @@ output:
 
 ## BDAH 2014 {.smaller}
 
-![International Conference on Big Data and Analytics in Healthcare 2014](img/bdah2014.png "International Conference on Big Data and Analytics in Healthcare 2014")
+![International Conference on Big Data and Analytics in Healthcare 2014](./img/bdah2014.png "International Conference on Big Data and Analytics in Healthcare 2014")
 <br>
 
 The **International Conference on Big Data and Analytics in Healthcare 2014** ([BDAH 2014](http://chi.nus.edu.sg/conference2014/)) provides a platform for healthcare decision makers, researchers, administrators, care-providers and industry leaders and representatives to gain insights into the strategies and analytic tools and techniques for dealing with big data in healthcare. It also provides the opportunity for participants to network with experts and share experience to deal with the oncoming data analytic challenges posed by big data.
@@ -52,9 +52,9 @@ Concepts in all three sections of the workshop will be illustrated with one cons
 <!---
 
 
-## Objectives
+## Educationl Objectives
 
-- The primary objective of this workshop is to get R users (including those who are new to R) to a level where they can comfortably carry out the following tasks:
+- The primary educationl objective of this workshop is to get R users (including those who are new to R) to a level where they can comfortably carry out the following tasks:
 
     - Exploratory data analysis via visualizations, and
 
@@ -70,7 +70,7 @@ Concepts in all three sections of the workshop will be illustrated with one cons
 
 <div class="columns-2">
 
-![Vik Gopal](img/vikgopal.jpg "Vik Gopal")
+![Vik Gopal](./img/vikgopal.jpg "Vik Gopal")
 <br>
 
 Online profile: <br> <http://www.stat.nus.edu.sg/~stavg>
@@ -88,7 +88,7 @@ Vik teaches R in his classes at NUS, and presented his R packages at useR! 2013 
 
 <div class="columns-2">
 
-![Wu Dan](img/wudan.jpg "Wu Dan")
+![Wu Dan](./img/wudan.jpg "Wu Dan")
 <br>
 
 Online profile: <br> <http://www.linkedin.com/in/wudanprofile>
@@ -105,7 +105,7 @@ Dan uses R at work, and conducted sharing sessions on R for healthcare at Singap
 # PRE-WORKSHOP MATERIALS
 
 
-## Install Latest [R](http://www.r-project.org) and [RStudio](http://www.rstudio.com) to Get Started
+## Install Both [R](http://www.r-project.org) and [RStudio](http://www.rstudio.com) to Get Started
 
 <iframe width="560" height="315" src="http://www.youtube.com/embed/cX532N_XLIs?rel=0" frameborder="0" allowfullscreen></iframe>
 
@@ -129,9 +129,9 @@ Dan uses R at work, and conducted sharing sessions on R for healthcare at Singap
 <iframe width="420" height="315" src="http://www.youtube.com/embed/3cLcgAbrUfk?rel=0" frameborder="0" allowfullscreen></iframe>
 
 
-## Case: Framingham Heart Study {.build .smaller}
+## Case: Framingham Heart Study {.smaller}
 
-![The Framingham Heart Study](img/fhs.png "The Framingham Heart Study")
+![The Framingham Heart Study](./img/fhs.png "The Framingham Heart Study")
 <br>
 
 - On 29 September 2013, the [Framingham Heart Study (FHS)](http://www.framinghamheartstudy.org) celebrated 65 years since the examination of the first volunteer in 1948. During this period, the landmark study has provided substantial insight into the epidemiology and risk factors of cardiovascular disease. The origins of the study are closely linked to the cardiovascular health of President Franklin D. Roosevelt and his premature death from hypertensive heart disease and stroke in 1945.
@@ -146,9 +146,9 @@ Dan uses R at work, and conducted sharing sessions on R for healthcare at Singap
 <iframe width="560" height="315" src="http://www.youtube.com/embed/xIRQXz4LRso?rel=0" frameborder="0" allowfullscreen></iframe>
 
 
-## Dataset {.build}
+## Dataset
 
-![Biologic Specimen and Data Repository Information Coordinating Center](img/biolincc.jpg "Biologic Specimen and Data Repository Information Coordinating Center")
+![Biologic Specimen and Data Repository Information Coordinating Center](./img/biolincc.jpg "Biologic Specimen and Data Repository Information Coordinating Center")
 <br>
 
 - The dataset we use for this workshop is a [publicly available](https://biolincc.nhlbi.nih.gov) subset of the FHS data, and includes laboratory, clinic, questionnaire, and event data on 4,434 participants.
@@ -160,7 +160,7 @@ Dan uses R at work, and conducted sharing sessions on R for healthcare at Singap
 
 ## See You on 22 July at Marina Bay Sands Expo and Convention Center Singapore
 
-![Marina Bay Sands Singapore](img/mbs.jpg "Marina Bay Sands Singapore")
+![Marina Bay Sands Singapore](./img/mbs.jpg "Marina Bay Sands Singapore")
 <br>
 
 Bring your laptop if you wish to have hands-on learning!
@@ -169,89 +169,3 @@ Cheers,
 <br>
 Vik and Dan
 
-
-<!---
-
-
-# EXPLORATORY DATA ANALYSIS
-
-
-## Desciptive statistics with categorical data {.flexbox .vcenter}
-
-```{r, message=FALSE}
-library(vcd)
-
-head(Arthritis)
-```
-
-
-## Desciptive statistics with categorical data | One-way table
-
-```{r}
-with(Arthritis, table(Improved))
-with(Arthritis, prop.table(table(Improved)))
-```
-
-
-## Desciptive statistics with categorical data | Two-way contigency table {.smaller}
-
-```{r}
-xtabs(~ Treatment + Improved, data = Arthritis)
-
-margin.table(xtabs(~ Treatment + Improved, data = Arthritis), 1)
-margin.table(xtabs(~ Treatment + Improved, data = Arthritis), 2)
-```
-
-
-## Desciptive statistics with categorical data | Two-way contigency table {.smaller}
-
-```{r}
-# addmargins(xtabs(~ Treatment + Improved, data = Arthritis), margin = 1)
-# addmargins(xtabs(~ Treatment + Improved, data = Arthritis), margin = 2)
-addmargins(xtabs(~ Treatment + Improved, data = Arthritis))
-
-# prop.table(xtabs(~ Treatment + Improved, data = Arthritis), 1)
-# prop.table(xtabs(~ Treatment + Improved, data = Arthritis), 2)
-prop.table(xtabs(~ Treatment + Improved, data = Arthritis))
-```
-
-
-## Desciptive statistics with categorical data | Two-way contigency table {.smaller}
-
-```{r}
-library(gmodels)
-with(Arthritis, CrossTable(Treatment, Improved, prop.r = F, prop.c = F, prop.t = F, prop.chisq = F))
-```
-
-
-## Desciptive statistics with categorical data | Two-way contigency table
-
-```{r}
-library(reshape2)
-dcast(Arthritis, Treatment ~ Improved)
-```
-
-
-## Desciptive statistics with categorical data | N-way contigency table
-
-```{r}
-ftable(xtabs(~ Treatment + Sex + Improved, data = Arthritis))
-```
-
-
-# INFERENTIAL STATISTICS
-
-
-## "Philosophy" {.build}
-
-- This is NOT graduate level stats class.
-
-- Rule
-
-- Rule
-
-
-## Slide Title...
-
-
--->
