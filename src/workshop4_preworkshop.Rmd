@@ -19,9 +19,9 @@ output:
 
 - Pre-workshop Materials
 
-- Vik's Section
+- Vik's...
 
-- Dan's Section
+- Dan's...
 
 
 -->

@@ -96,14 +96,19 @@ ftable(xtabs(~ Treatment + Sex + Improved, data = Arthritis))
 ## Slide Title...
 
 ```{r message=FALSE}
-fhs <- read.csv("../data/fhs.csv")
-with(fhs, summary(bmi1))
+fhs <- read.csv("../data/frmgham2.csv")
+with(fhs, summary(HEARTRTE))
 
-library(Hmisc)
-with(fhs, describe(bmi1)) # Hmisc::describe
+# library(Hmisc)
+# with(fhs, describe(HEARTRTE)) # Hmisc::describe
 
 library(psych)
-with(fhs, describe(bmi1)) # psych::describe
+with(fhs, describe(HEARTRTE)) # psych::describe
+
+# library(foreign)
+# fhs.yha <- read.dta("../data/tmp/healthyyoungadults.dta")
+# with(fhs.yha, hist(heartrte2)) # to add ggplot2 version?
+with(fhs, hist(HEARTRTE))
 ```
 
 
