@@ -2,10 +2,11 @@
 title: "Visualisation with R"
 author: "Vik Gopal and Wu Dan"
 date: "July 22, 2014"
-output: 
+output:
   ioslides_presentation:
     self_contained: yes
     widescreen: yes
+  beamer_presentation: default
 ---
 
 ## Outline
@@ -978,7 +979,6 @@ inputPanel(
   } else {
     p <- qplot(x,y, xlab=input$x_var,ylab=input$y_var) 
   } 
-  #p + geom_point(size=3, colour="steelblue")
   p + xlim(x.range) + stat_smooth(method="glm", family="binomial") + 
   geom_point(position=position_jitter(height=0.02)) 
 ```
