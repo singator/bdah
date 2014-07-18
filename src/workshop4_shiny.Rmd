@@ -27,7 +27,7 @@ for conditioning on gender.
 ```{r, echo=FALSE, message=FALSE}
 library(ggplot2)
 library(dplyr)
-fhs.long <- read.csv("../data/frmgham2.csv")
+fhs.long <- read.csv("frmgham2.csv")
 fhs.only3 <- filter(fhs.long, PERIOD==3)
 ```
 

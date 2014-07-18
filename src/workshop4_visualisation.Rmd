@@ -25,8 +25,7 @@ output:
     * Exploring Logistic Regression with FHS Data 
    
 ## The Framingham Heart Study (FHS)
-* A Long term study of Cardiovascular Disease (CVD) among subjects in 
-  Framingham, USA.
+* A Long term study of Cardiovascular Disease among subjects in Framingham, USA.
 * Began in 1948 with 5209 subjects.
 * Patients examined every 2 years for
     * Clinical examination data  
@@ -36,11 +35,11 @@ output:
  
 ## Some Findings of the FHS
 * Over 1000 medical papers have been published using the data from the FHS.
-* The study has uncovered or confirmed several risk factors for CVD:
+* The study has uncovered or confirmed several risk factors for Heart Disease:
     * High blood pressure
     * Obesity
     * Cigarette smoking
-* The study has also shown there are differences in cardiovascular risk between
+* The study has also shown there are differences in coronary risk between
   men and women.
   
 ## Our Dataset
@@ -56,7 +55,7 @@ output:
 ## Columns in Our Dataset
 Here are the *first six columns and rows* of our dataset:
 ```{r echo=FALSE, label="load data"}
-fhs.long <- read.csv("../data/frmgham2.csv")
+fhs.long <- read.csv("frmgham2.csv")
 head(fhs.long[,1:6])
 ```
 > - `RANDID` refers to the patient id.
@@ -99,12 +98,12 @@ HYPERTEN | 1 if patient has hypertension, which is defined to be Systolic greate
     * Basic Concepts   
     * Exploring Logistic Regression with FHS Data 
    
-## Goal 1 : Hypertension and CVD status
+## Goal 1 : Hypertension and CVD Status
 ![Goal 1](img/goal_1.png)
 
 ## Goal 1 : Hypertension and CVD Status | Insights
 
-* Increased association of hypertension with cerebrovascular disease in elderly.
+* Increased association of hypertension with cerebrovascular disease (CVD) in elderly.
 * For a given age group, association of hypertension with cerebrovascular
   disease is greater for males than females.
 
@@ -162,51 +161,42 @@ Warning:
     * Basic Concepts   
     * Exploring Logistic Regression with FHS Data 
 
-## Why R? {.build}
-* R is free.
-* There are currently 5755 packages on
+## Why R?   
+
+> -  R is free.
+> -  There are currently 5755 packages on
   [CRAN](http://cran.r-project.org/web/packages/), and another 824 on
   [Bioconductor](http://www.bioconductor.org/packages/release/BiocViews.html#___Software).
     * They are free too.
-* R provides many tools for reproducible research. Any analysis that you do can
+> -  R provides many tools for reproducible research. Any analysis that you do can
   be easily carried out by your colleagues as well. 
     * This includes all plots and tables.
-* R has very good visualisation capabilities.
+> -  R has very good visualisation capabilities.
     * This
       [plot](http://www.nytimes.com/interactive/sports/football/2013-fantasy-football-tier-charts-QB.html?ref=football&_r=2&),
       on the New York Times, was created by ggplot2, a graphics library in R
       that we shall learn about.
 
-## Installing R
-* Go to [CRAN](http://cran.r-project.org "Comprehensive R Archive Network").
-* Click on the link corresponding to your OS.
-* **Please install R version 3.1.0 for this workshop.**
-
-**If you are using OS X, it is highly recommended that you install the version
-for Snow Leopard rather than Mavericks.**
- 
 ## About RStudio
-* RStudio is an Integrated Development Environment (IDE) developed specifically
+
+> - RStudio is an Integrated Development Environment (IDE) developed specifically
   for R coding.
-* It is free, and provides a familiar interface to programmers with features
+> - It is free, and provides a familiar interface to programmers with features
   such as 
     * Execution of source code directly from the source editor.
     * Syntax highlighting and code completion.
     * History of plots, commands and help files.
-* It is certainly good for a newcomer to R, but it is also the environment of
+> - It is certainly good for a newcomer to R, but it is also the environment of
   choice for many advanced users.
 
-## Installing RStudio
-* Go to [RStudio](http://www.rstudio.com/ide/download/ "RStudio Downloads")
-* Download the **RStudio Desktop** and install the appropriate version for your
-  OS.
-* **Please install at least version 0.98.932 for this workshop.**
+## Installing [R](http://www.r-project.org) and [RStudio](http://www.rstudio.com)
 
-![RStudio Install Screen](img/rstudio_installa.png)
+<iframe width="560" height="315" src="http://www.youtube.com/embed/cX532N_XLIs?rel=0" 
+frameborder="0" allowfullscreen></iframe>
 
 ## Navigating RStudio
 
-![RStudio Panels](img/rstudio_panelsa.png "RStudio Panels")
+<img src="img/rstudio_panelsa.png" width="650px">
 
 *  Console  
 *  Source code editor     
@@ -242,26 +232,31 @@ library(ggplot2)
 ## Ready To Go? | shiny test
 
 *  Open RStudio, go to *File > New File > R Markdown*   
-*  Select **Shiny** on the left.
+*  Select **shiny** on the left.
 *  Fill in the **Title** and **Author** fields and click OK.
 
-![Create Shiny Doc](img/Shiny_create.png)
+![Create shiny Doc](img/shiny_create.png)
 
 ## Ready To Go? | shiny success
 
 *  Save the newly created file in the console.  
 *  Click on **Run Document**.  
 
-![Created Shiny Doc](img/Shiny_successa.png)
+![Created shiny Doc](img/shiny_successa.png)
 
 ## Working Directory
 
 *  We are going to start running R code.
 *  Hence we need to be in a position to access the data and code for this
    workshop.
-*  Go to *Session > Set Working Directory > Choose Directory*.
-*  If your data is stored in `D:/Users/viknesh/bdah/data/`
-    * Set your working directory to be `D:/Users/viknesh/bdah/`
+*  Create a folder called `bdah`
+*  Copy the following files into that folder:
+    * workshop4_visualisation.R     
+    * workshop4_inferential.R   
+    * workshop4_shiny.Rmd   
+    * frmgham2.csv
+*  Go to *Session > Set Working Directory > Choose Directory*
+*  Set your working directory to be `bdah`
 
 ## Outline
 * Introduction to Framingham Heart Study  
@@ -421,12 +416,9 @@ head(tea.df$cost)
     * Exploring Logistic Regression with FHS Data 
 
 ## Our Dataset
-```{r echo=FALSE,label="set wd"}
-setwd('../')
-```
 The following command reads in our dataset as a data frame.
 ```{r label="read in data properly and load dplyr"}
-fhs.long <- read.csv("../data/frmgham2.csv", header=TRUE)
+fhs.long <- read.csv("frmgham2.csv", header=TRUE)
 
 ## We are going to need this from now on too.
 library(dplyr) 
@@ -857,26 +849,13 @@ p6 + geom_point() +
     * Basic Concepts   
     * Exploring Logistic Regression with FHS Data 
 
-## About Shiny
-*  Shiny introduces a new way of presenting your data and of exploring it.
+## About shiny
+*  shiny introduces a new way of presenting your data and of exploring it.
 *  Now, instead of a static document, you can provide your team or collaborator
    with an interactive document.
 *  This way, they can recreate your exploration phase instead of just seeing the
    final plot.
 *  This allows many more eyeballs on the data and can lead to more insights.
-
-## Create A New Shiny Document
-*  Go to *File > New File > R Markdown*
-*  Select *Shiny* from the list on the left, and fill in the title as *BDAH
-   visualisation workshop*.
-*  Click *OK*.
-*  A new file opens in panel 2 of RStudio.
-*  Save this in your current directory with name of your choice, e.g. *BDAH_vik*
-*  Delete everything below the second *****.
-*  Click on *Run Document* from within panel 2. You should see the next slide.
-
-## The New, Blank Shiny Document
-![Blank shiny](img/bdah_demo_1.png)
 
 ## Outline
 * Introduction to Framingham Heart Study  
@@ -895,7 +874,7 @@ p6 + geom_point() +
     * Exploring Logistic Regression with FHS Data 
 
 ## Building Blocks
-*  A Shiny document consists of two parts
+*  A shiny document consists of two parts
 *  Widgets
     * These are objects from which **inputs** are collected.
 *  RenderXXXXX objects
@@ -946,7 +925,7 @@ renderPlot(
 #### More text follows.
 ```
 
-## The Final Shiny Product
+## The Final shiny Product
 <img src="img/shiny_input_output.png" width="900px">
 
 
