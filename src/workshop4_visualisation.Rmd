@@ -97,7 +97,7 @@ HYPERTEN | 1 if patient has hypertension, which is defined to be Systolic greate
     * Exploring Logistic Regression with FHS Data 
    
 ## Goal 1 
-![Goal 1](goal_1.png)
+![Goal 1](img/goal_1.png)
 
 ## Goal 1 | Insights
 
@@ -110,7 +110,7 @@ Warning:
 *  *Our data is censored - we only have data for a period of 12 years.*
 
 ## Goal 2 
-![Goal 2](goal_2.png)
+![Goal 2](img/goal_2.png)
 
 ## Goal 2 | Insights
 
@@ -118,7 +118,7 @@ Warning:
 * The effect of cigarettes seems to be larger for females than for males.
 
 ## Goal 3 
-![Goal 3](goal_3a.png)
+![Goal 3](img/goal_3a.png)
 
 ## Goal 3 | Details
 - There are several measurements in our data set.
@@ -184,11 +184,11 @@ for Snow Leopard rather than Mavericks.**
   OS.
 * **Please install at least version 0.98.932 for this workshop.**
 
-![RStudio Install Screen](rstudio_installa.png)
+![RStudio Install Screen](img/rstudio_installa.png)
 
 ## Navigating RStudio
 
-![RStudio Panels](rstudio_panelsa.png "RStudio Panels")
+![RStudio Panels](img/rstudio_panelsa.png "RStudio Panels")
 
 *  Console  
 *  Source code editor     
@@ -227,14 +227,14 @@ library(ggplot2)
 *  Select **Shiny** on the left.
 *  Fill in the **Title** and **Author** fields and click OK.
 
-![Create Shiny Doc](Shiny_create.png)
+![Create Shiny Doc](img/Shiny_create.png)
 
 ## Ready To Go? | shiny success
 
 *  Save the newly created file in the console.  
 *  Click on **Run Document**.  
 
-![Created Shiny Doc](Shiny_successa.png)
+![Created Shiny Doc](img/Shiny_successa.png)
 
 ## Working Directory
 
@@ -579,7 +579,7 @@ head(fhs.only1[,c("RANDID","PERIOD", "AGE.CAT")])
 x <- c(1,2)
 y <- c(2,4)
 ```
-```{r echo=FALSE, fig.height=4}
+```{r echo=FALSE, fig.height=4, fig.path='img/'}
 plot(x,y, xlim=c(0,4), ylim=c(1,5), cex=2, col="red")
 ```
 
@@ -596,7 +596,7 @@ x <- c(1,2)
 y <- c(2,4)
 z <- c("A","B")
 ```
-```{r echo=FALSE, fig.height=4}
+```{r echo=FALSE, fig.height=4, fig.path='img/'}
 plot(x,y, xlim=c(0,4), ylim=c(1,5), pch=19, cex=2, col=c("red","green"))
 ```
 
@@ -613,7 +613,7 @@ plot(x,y, xlim=c(0,4), ylim=c(1,5), pch=19, cex=2, col=c("red","green"))
 set.seed(1)
 x <- rnorm(1000)
 ```
-```{r echo=FALSE, fig.height=4}
+```{r echo=FALSE, fig.height=4, fig.path='img/'}
 hist(x, col="steelblue", border="red", breaks=20)
 ```
 
@@ -677,20 +677,20 @@ p2 <- ggplot(fhs.only1, aes(x=factor(HYPERTEN), fill=factor(CVD)))
 *  Now let's create a simple layer and display it.
 
 ## Towards Goal 1 | An Interim Result
-```{r fig.height=4}
+```{r fig.height=4, fig.path='img/'}
 p2 + geom_bar(position="fill")
 ```
 
 ## Achieving Goal 1
 We still need to condition on SEX and AGE.CAT. For this, we use the
 `facet_grid()` specification.
-```{r fig.height=4}
+```{r fig.height=4, fig.path='img/'}
 p2 + geom_bar(position="fill") + facet_grid(SEX ~ AGE.CAT)
 ```
 
 ## Achieving Goal 1 | Cosmetics
 In order to achieve Goal 1 exactly, there are some cosmetics additions.
-```{r fig.height=3}
+```{r fig.height=3, fig.path='img/'}
 p2 + geom_bar(position="fill") + facet_grid(SEX ~ AGE.CAT) +
   xlab("Hypertension status") + ylab("Probability") + 
   guides(fill=guide_legend("CVD status"))
@@ -699,7 +699,7 @@ p2 + geom_bar(position="fill") + facet_grid(SEX ~ AGE.CAT) +
 ## Exercise 4
 Try recreating this plot:  
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.path='img/'}
 p2 + geom_bar(position="dodge") + facet_grid(SEX ~ .)
 ```
 
@@ -756,7 +756,7 @@ Recall that we need 4 elements in our layer.
 *  We also need a smoothing transformation.
 
 ## Achieving Goal 2
-```{r fig.height=4}
+```{r fig.height=4, fig.path='img/'}
 p6 <- ggplot(fhs.smokers.3, aes(x=ave.cigpday, y=cvd))
 p6 + geom_point() + 
   stat_smooth(method="glm", family="binomial") +  
@@ -798,7 +798,7 @@ p6 + geom_point() +
 *  Click on *Run Document* from within panel 2. You should see the next slide.
 
 ## The New, Blank Shiny Document
-![Blank shiny](BDAH_demo_1.png)
+![Blank shiny](img/bdah_demo_1.png)
 
 ## Outline
 * Introduction to Framingham Heart Study  
