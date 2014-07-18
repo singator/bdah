@@ -1,0 +1,74 @@
+---
+title: "Shiny Example for BDAH 2014"
+date: "Tuesday, July 22, 2014"
+output: html_document
+runtime: shiny
+---
+
+### Introduction
+By writing a Shiny document, you provide your users with the option of exploring
+the data on their own. Shiny documents allow your users to interact with your
+data and immediately see the output of their changes, in the form of 
+
+* plots, 
+* tables,
+* text, 
+* and even in the form of models!
+
+The input and output are typically in the form of a web-page, but there is no
+need to learn Javascript or HTML!
+
+### Exploring the FHS Data
+In this document, we shall provide the user with the options of exploring the
+relationship between 3 explanatory variables and 3 responses. As the responses
+are binary, the plot includes a fitted logistic regression line, and also allows
+for conditioning on gender. 
+
+```{r, echo=FALSE, message=FALSE}
+library(ggplot2)
+library(dplyr)
+fhs.long <- read.csv("../data/frmgham2.csv")
+fhs.only3 <- filter(fhs.long, PERIOD==3)
+```
+
+```{r, echo=FALSE}
+inputPanel(
+  radioButtons("x_var", label="Explanatory Variable", 
+    choices=c("BMI", "LDLC", "TOTCHOL"), selected="BMI"),
+  
+  radioButtons("y_var", label="Response Variable", 
+    choices=c("CVD", "STROKE", "ANYCHD"), selected="CVD"),
+  
+  checkboxInput("con_gender", label="Condition on Gender", value=FALSE)
+)
+
+inputPanel(
+  sliderInput("bmi_range", label="BMI range", min=10,
+  max=60, value=c(10,60)),
+  sliderInput("ldlc_range", label="LDLC range", min=20,
+  max=565, value=c(20,565)),
+  sliderInput("tot_range", label="Total Chol. range", min=112,
+  max=625, value=c(112,625))
+)
+
+renderPlot({
+  x <- fhs.only3[,input$x_var]
+  y <- fhs.only3[,input$y_var]
+  
+  if(input$x_var == "BMI") {
+    x.range <- input$bmi_range
+  } else if (input$x_var == "LDLC") {
+    x.range <- input$ldlc_range
+  } else 
+    x.range <- input$tot_range
+  
+  if(input$con_gender){
+    p <- qplot(x,y, xlab=input$x_var, ylab=input$y_var, facets = . ~ SEX, data=fhs.only3)
+  } else {
+    p <- qplot(x,y, xlab=input$x_var,ylab=input$y_var) 
+  } 
+  #p + geom_point(size=3, colour="steelblue")
+  p + xlim(x.range) + stat_smooth(method="glm", family="binomial") + 
+  geom_point(position=position_jitter(height=0.02)) 
+})
+```

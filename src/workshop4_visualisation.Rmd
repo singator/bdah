@@ -2,7 +2,10 @@
 title: "Visualisation with R"
 author: "Vik Gopal and Wu Dan"
 date: "July 22, 2014"
-output: ioslides_presentation
+output: 
+  ioslides_presentation:
+    self_contained: yes
+    widescreen: yes
 ---
 
 ## Outline
@@ -52,7 +55,7 @@ output: ioslides_presentation
 
 ## Columns in Our Dataset
 Here are the *first six columns and rows* of our dataset:
-```{r echo=FALSE}
+```{r echo=FALSE, label="load data"}
 fhs.long <- read.csv("../data/frmgham2.csv")
 head(fhs.long[,1:6])
 ```
@@ -96,10 +99,10 @@ HYPERTEN | 1 if patient has hypertension, which is defined to be Systolic greate
     * Basic Concepts   
     * Exploring Logistic Regression with FHS Data 
    
-## Goal 1 
+## Goal 1 : Hypertension and CVD status
 ![Goal 1](img/goal_1.png)
 
-## Goal 1 | Insights
+## Goal 1 : Hypertension and CVD Status | Insights
 
 * Increased association of hypertension with cerebrovascular disease in elderly.
 * For a given age group, association of hypertension with cerebrovascular
@@ -109,18 +112,18 @@ Warning:
 
 *  *Our data is censored - we only have data for a period of 12 years.*
 
-## Goal 2 
+## Goal 2 : Cigarettes and CVD Status
 ![Goal 2](img/goal_2.png)
 
-## Goal 2 | Insights
+## Goal 2 : Cigarettes and CVD Status | Insights
 
 * Number of cigarettes smoked is associated with CVD.
 * The effect of cigarettes seems to be larger for females than for males.
 
-## Goal 3 
+## Goal 3 : Interactively Exploring Relationships
 ![Goal 3](img/goal_3a.png)
 
-## Goal 3 | Details
+## Goal 3 : Interactively Exploring Relationships | Details
 - There are several measurements in our data set.
 - There are also several responses.
 - We could look at plots of one combination at a time.
@@ -158,6 +161,21 @@ Warning:
 * Interactive Plots with `shiny`
     * Basic Concepts   
     * Exploring Logistic Regression with FHS Data 
+
+## Why R? {.build}
+* R is free.
+* There are currently 5755 packages on
+  [CRAN](http://cran.r-project.org/web/packages/), and another 824 on
+  [Bioconductor](http://www.bioconductor.org/packages/release/BiocViews.html#___Software).
+    * They are free too.
+* R provides many tools for reproducible research. Any analysis that you do can
+  be easily carried out by your colleagues as well. 
+    * This includes all plots and tables.
+* R has very good visualisation capabilities.
+    * This
+      [plot](http://www.nytimes.com/interactive/sports/football/2013-fantasy-football-tier-charts-QB.html?ref=football&_r=2&),
+      on the New York Times, was created by ggplot2, a graphics library in R
+      that we shall learn about.
 
 ## Installing R
 * Go to [CRAN](http://cran.r-project.org "Comprehensive R Archive Network").
@@ -207,15 +225,15 @@ are installed as well.
 
 ## Ready To Go? | dplyr
 Checking on `dplyr`:
-```{r eval=TRUE}
+```{r eval=TRUE, label="load dplyr"}
 library(dplyr)
 ```
 
-> - No news is good news!
+> - These messages mean you are OK!
 
 ## Ready To Go? | ggplot2
 Checking on ggplot2:
-```{r}
+```{r label="load_ggplot2"}
 library(ggplot2)
 ```
 
@@ -278,7 +296,7 @@ library(ggplot2)
     * real numbers,
     * words, and so on and so forth.
 *  Here's how we create and print vectors in R.
-```{r}
+```{r label="create vector 1"}
 Z <- c(7.3, 2, 13.1)
 Z
 ```
@@ -287,12 +305,12 @@ Z
 ## Accessing Elements in a Vector
 *  The `:` operator creates a sequence of integers, which can then be used to
    access individual elements in a vector.
-```{r}
+```{r label="access vectors 1"}
 Z[1:2]
 ```
 *  When a negative sign is added in front, it means that the values at these
    indices should be dropped.
-```{r}
+```{r label="access vectors 2"}
 Z[-(1:2)]
 ```
 
@@ -300,7 +318,7 @@ Z[-(1:2)]
 Try out the following tasks, that pertain to vectors.
 
 *  Run the following code, and try to figure out what it does:
-```{r eval=FALSE}
+```{r eval=FALSE, label="access vectors qn"}
 Z[c(1,3)]
 ```
    How is it different from `Z[-2]`?  
@@ -308,9 +326,28 @@ Z[c(1,3)]
 *  The expression `1:5` creates the vector `c(1,2,3,4,5)`. What does `5:1` do?  
 *  How can we create a vector `c(1.2, 2.2, 3.2, 4.2)`?  
 
+## Exercise 1 Solution
+Try out the following tasks, that pertain to vectors.
+
+*  Run the following code, and try to figure out what it does:
+```{r label="access vectors soln"}
+Z[c(1,3)]
+Z[-2]
+```
+   How is it different from `Z[-2]`?  
+
+*  The expression `1:5` creates the vector `c(1,2,3,4,5)`. What does `5:1` do?  
+```{r label="create descending vector"}
+5:1
+```
+*  How can we create a vector `c(1.2, 2.2, 3.2, 4.2)`?  
+```{r label="create vector soln"}
+1.2:4.2
+```
+
 ## Matrices
 *  Matrices are 2-dimensional arrays with all elements of the same type. 
-```{r}
+```{r label="create matrix"}
 mymat <- matrix(1:9, nrow=3, ncol=3)
 mymat
 ```
@@ -319,17 +356,17 @@ mymat
 
 ## Accessing Elements Within a Matrix
 *  Accessing the element in row 3 and column 2:
-```{r}
+```{r label="access element in a matrix"}
 mymat[3,2]
 ```
 *  Accessing row 3:
-```{r}
+```{r label="access rows in a matrix"}
 mymat[3, ]
 ```
 
 ## Accessing Elements Within a Matrix
 *  Accessing columns 2 and 3 of rows 1 and 3:
-```{r}
+```{r label="access rows + cols in a matrix"}
 mymat[c(1,3), c(2,3)]
 ```
 
@@ -344,7 +381,7 @@ mymat[c(1,3), c(2,3)]
 
 ## Creating Data Frames
 The following code creates a data frame:
-```{r}
+```{r label="create data frame"}
 tea.type <- c("black", "red", "green")
 cost <- c(4, 5, 5.5)
 tea.df <- data.frame(cost, tea.type)
@@ -356,8 +393,15 @@ tea.df
 ## Exercise 2
 *  Retrieve the element in row 3 and column 2 of the `tea.df` data frame.  
 *  What does the following expression return?
-```{r eval=FALSE}
+```{r label="exercise 2 qn", eval=FALSE}
 tea.df$cost
+```
+
+## Exercise 2 Solution
+*  Retrieve the element in row 3 and column 2 of the `tea.df` data frame.  
+*  What does the following expression return?
+```{r label="exercise 2 solution"}
+head(tea.df$cost)
 ```
 
 ## Outline
@@ -377,11 +421,11 @@ tea.df$cost
     * Exploring Logistic Regression with FHS Data 
 
 ## Our Dataset
-```{r echo=FALSE}
+```{r echo=FALSE,label="set wd"}
 setwd('../')
 ```
 The following command reads in our dataset as a data frame.
-```{r}
+```{r label="read in data properly and load dplyr"}
 fhs.long <- read.csv("../data/frmgham2.csv", header=TRUE)
 
 ## We are going to need this from now on too.
@@ -423,7 +467,7 @@ RANDID SEX HYPERTEN STROKE CVD AGE.CAT PERIOD
 *  `filter()` is for selecting a subset of rows.
 *  The criteria will be based on the columns already in the data.
 *  Suppose we wanted all patients who had hypertension:
-```{r}
+```{r label="filter eg 1"}
 out <- filter(fhs.long, HYPERTEN == 1)
 head(out[, c("RANDID", "PERIOD", "HYPERTEN")])
 ```
@@ -431,14 +475,14 @@ head(out[, c("RANDID", "PERIOD", "HYPERTEN")])
 ## Filtering Data | Example (b)
 *  Suppose we wanted all patients who had hypertension but not CVD, and whose
    BMI was greater than 25.
-```{r}
+```{r label="filter eg 2"}
 out <- filter(fhs.long, HYPERTEN == 1, CVD == 0, BMI > 25)
 head(out[, c("RANDID", "PERIOD", "HYPERTEN", "CVD", "BMI")])
 ```
 
 ## Filtering Data | Example (c)
 *  Suppose we wanted all patients who had hypertension or CVD.
-```{r}
+```{r label="filter eg 3"}
 out <- filter(fhs.long, HYPERTEN == 1 | CVD == 1)
 head(out[, c("RANDID", "PERIOD", "HYPERTEN", "CVD")])
 ```
@@ -447,7 +491,7 @@ head(out[, c("RANDID", "PERIOD", "HYPERTEN", "CVD")])
 *  If we wish to select only a few columns to work with, we can use the
   `select()` verb.
 *  Suppose we wished to select only the columns AGE, SYSBP and DIABP.
-```{r}
+```{r label="select eg 1"}
 out <- select(fhs.long, AGE, SYSBP, DIABP)
 head(out)
 ```
@@ -456,7 +500,7 @@ head(out)
 *  Many times, we wish to select a set of columns that are contiguous.
 *  We can then use the `:` operator.
 *  This can save us a lot of typing.
-```{r}
+```{r label="select eg 2"}
 out <- select(fhs.long, AGE:DIABP)
 head(out)
 ```
@@ -465,7 +509,7 @@ head(out)
 *  Often, we need to transform a particular column(s) to result in a new column.
 *  We can achieve this with the `mutate()` operator.
 *  Suppose we wish to take the log of TOTCHOL.
-```{r}
+```{r label="mutate eg 1"}
 out <- mutate(fhs.long, LOG.TOTCHOL = log(TOTCHOL))
 head(out[, c("RANDID", "TOTCHOL", "LOG.TOTCHOL")])
 ```
@@ -474,7 +518,7 @@ head(out[, c("RANDID", "TOTCHOL", "LOG.TOTCHOL")])
 *  Finally, we can `summarise()` a column using functions that take in a vector
    and return a **single** value.
 *  We shall see the value of this verb in a short while.
-```{r}
+```{r label="summarise eg 1"}
 summarise(fhs.long, mean.BMI = mean(BMI, na.rm=TRUE)) 
 ```
 
@@ -484,9 +528,24 @@ summarise(fhs.long, mean.BMI = mean(BMI, na.rm=TRUE))
    were above 50 years of age at the time.
 *  Add a new column that contains the difference between DIABP and SYSBP.
 
+## Exercise 3 Solution
+*  Create a data frame that only contains subjects that died.
+```{r label="ex 3 qn 1 solution"}
+out <- filter(fhs.long, DEATH == 1)
+```
+*  Create a data frame that contains only period 1 examinations for patients who
+   were above 50 years of age at the time.
+```{r label="ex 3 qn 2 solution"}
+out <- filter(fhs.long, PERIOD == 1, AGE > 50)
+```
+*  Add a new column that contains the difference between DIABP and SYSBP.
+```{r label="ex 3 qn 3 solution"}
+out <- mutate(fhs.long, BP.DIFF = DIABP - SYSBP)
+```
+
 ## Splitting Into Groups
 *  The `group_by()` operator can be used to split the data frame into groups.
-```{r}
+```{r label="group_by eg 1"}
 fhs.tmp <- filter(fhs.long, PERIOD == 3)
 fhs.tmp <- select(fhs.tmp, AGE, BMI, SEX, HYPERTEN)
 fhs.tmp <- group_by(fhs.tmp, SEX, HYPERTEN)
@@ -495,7 +554,7 @@ summarise(fhs.tmp, mean.BMI = mean(BMI, na.rm=TRUE))
 
 ## Daisy-chaining Operations
 *  Notice how we kept re-assigning the output to `fhs.tmp` earlier?
-```{r}
+```{r label="daisy chaining"}
 filter(fhs.long, PERIOD == 3) %>%
 select(AGE, BMI, SEX, HYPERTEN) %>% 
 group_by(SEX, HYPERTEN) %>% 
@@ -506,7 +565,7 @@ summarise(mean.BMI = mean(BMI, na.rm=TRUE))
 ## Getting More Help
 For more details and examples on the `dplyr` package, take a look at the
 documentation that is included with the package.
-```{r eval=FALSE}
+```{r eval=FALSE,label="getting help"}
 vignette('introduction')
 ```
 
@@ -528,7 +587,7 @@ vignette('introduction')
 
 ## Towards Goal 1 | Extracting The Data
 The `cut()` function in R divides a numeric variable into categories.
-```{r}
+```{r label="extracting data for goal 1"}
 fhs.only1 <- filter(fhs.long, PERIOD==1) %>% 
   mutate(AGE.CAT=cut(AGE, 
   breaks=c(30,44,54,64,74,84)))
@@ -575,11 +634,11 @@ head(fhs.only1[,c("RANDID","PERIOD", "AGE.CAT")])
    plot.
 
 ## Motivating Example 1 | The Plot
-```{r}
+```{r label="motivation plot 1 data"}
 x <- c(1,2)
 y <- c(2,4)
 ```
-```{r echo=FALSE, fig.height=4, fig.path='img/'}
+```{r echo=FALSE, label="motivation plot 1", fig.height=4, fig.path='img/'}
 plot(x,y, xlim=c(0,4), ylim=c(1,5), cex=2, col="red")
 ```
 
@@ -591,12 +650,12 @@ plot(x,y, xlim=c(0,4), ylim=c(1,5), cex=2, col="red")
 *  Were they **transformed** before plotting in any way?   
 
 ## Motivating Example 2 | The Plot
-```{r}
+```{r label="motivation plot 2 data"}
 x <- c(1,2)
 y <- c(2,4)
 z <- c("A","B")
 ```
-```{r echo=FALSE, fig.height=4, fig.path='img/'}
+```{r label="motivation plot 2", echo=FALSE, fig.height=4, fig.path='img/'}
 plot(x,y, xlim=c(0,4), ylim=c(1,5), pch=19, cex=2, col=c("red","green"))
 ```
 
@@ -609,11 +668,11 @@ plot(x,y, xlim=c(0,4), ylim=c(1,5), pch=19, cex=2, col=c("red","green"))
 *  Were they **transformed** before plotting in any way?   
 
 ## Motivating Example 3 | The Plot
-```{r}
+```{r label="motivation plot 3 data"}
 set.seed(1)
 x <- rnorm(1000)
 ```
-```{r echo=FALSE, fig.height=4, fig.path='img/'}
+```{r echo=FALSE, label="motivation plot 3", fig.height=4, fig.path='img/'}
 hist(x, col="steelblue", border="red", breaks=20)
 ```
 
@@ -663,12 +722,12 @@ Different layers can be added to the same plot.
 *  For full documentation and many useful examples, refer to the website
    <http://docs.ggplot2.org/current/>
 
-## Towards Goal 1.
+## Towards Goal 1
 *  Goal 1 consists of a series of bar plots, with different colours for whether
    or not an individual had a cerebrovascular disease.
 *  What goes on the x-axis and what goes on the y-axis?
 *  Let us give this a try.
-```{r}
+```{r label="goal 1 ggplot data map"}
 library(ggplot2)
 p2 <- ggplot(fhs.only1, aes(x=factor(HYPERTEN), fill=factor(CVD)))
 ```
@@ -677,20 +736,20 @@ p2 <- ggplot(fhs.only1, aes(x=factor(HYPERTEN), fill=factor(CVD)))
 *  Now let's create a simple layer and display it.
 
 ## Towards Goal 1 | An Interim Result
-```{r fig.height=4, fig.path='img/'}
+```{r label="goal 1 ggplot geom object", fig.height=4, fig.path='img/'}
 p2 + geom_bar(position="fill")
 ```
 
 ## Achieving Goal 1
 We still need to condition on SEX and AGE.CAT. For this, we use the
 `facet_grid()` specification.
-```{r fig.height=4, fig.path='img/'}
+```{r label="goal 1 ggplot faceting", fig.height=4, fig.path='img/'}
 p2 + geom_bar(position="fill") + facet_grid(SEX ~ AGE.CAT)
 ```
 
 ## Achieving Goal 1 | Cosmetics
 In order to achieve Goal 1 exactly, there are some cosmetics additions.
-```{r fig.height=3, fig.path='img/'}
+```{r label="goal 1 ggplot cosmetics", fig.height=3, fig.path='img/'}
 p2 + geom_bar(position="fill") + facet_grid(SEX ~ AGE.CAT) +
   xlab("Hypertension status") + ylab("Probability") + 
   guides(fill=guide_legend("CVD status"))
@@ -699,7 +758,14 @@ p2 + geom_bar(position="fill") + facet_grid(SEX ~ AGE.CAT) +
 ## Exercise 4
 Try recreating this plot:  
 
-```{r echo=FALSE, fig.path='img/'}
+```{r echo=FALSE, label="ex 4 qn", fig.path='img/'}
+p2 + geom_bar(position="dodge") + facet_grid(SEX ~ .)
+```
+
+## Exercise 4 Solution
+Try recreating this plot:  
+
+```{r eval=FALSE, label="ex 4 soln"}
 p2 + geom_bar(position="dodge") + facet_grid(SEX ~ .)
 ```
 
@@ -713,7 +779,7 @@ p2 + geom_bar(position="dodge") + facet_grid(SEX ~ .)
 ## Towards Goal 2 (Data Extraction)
 *  This code will extract the `RANDID` for those indivduals who were examined
    three times.
-```{r}
+```{r label="goal 2 data extraction"}
 exam.count <- table(fhs.long$RANDID)
 all3.id <- as.integer(names(exam.count[exam.count == 3]))
 ```
@@ -724,9 +790,21 @@ all3.id <- as.integer(names(exam.count[exam.count == 3]))
 *  How many elements are there in the vector? Take a look at the `length()`
    function in R. 
 
+## Exercise 5 Solution
+*  What is contained in the vector `all3.id`? Display the first 6 elements of
+   it.   
+```{r label="ex 5 qn 1 soln"}
+head(all3.id)
+```
+*  How many elements are there in the vector? Take a look at the `length()`
+   function in R. 
+```{r label="ex 5 qn 2 soln"}
+length(all3.id)
+```
+
 ## Towards Goal 2  | Data Extraction
 Now let us use the `dplyr` functions to get what we need.
-```{r}
+```{r label="goal 2 data extraction 2"}
 fhs.smokers <- filter(fhs.long, RANDID %in% all3.id) %>% 
   group_by(RANDID) %>% 
   summarise(sex=min(SEX),
@@ -741,7 +819,7 @@ This gives us a data frame with one line for each subject who had been examined
 thrice.
 
 ## Towards Goal 2 | Data Extracted
-```{r}
+```{r label="goal 2 data extraction 3"}
 fhs.smokers.3 <- filter(fhs.smokers, num.smoking == 3, 
   age.cat == "(54,64]")
 ```
@@ -756,7 +834,7 @@ Recall that we need 4 elements in our layer.
 *  We also need a smoothing transformation.
 
 ## Achieving Goal 2
-```{r fig.height=4, fig.path='img/'}
+```{r label="goal 2 data extraction 4", fig.height=4, fig.path='img/'}
 p6 <- ggplot(fhs.smokers.3, aes(x=ave.cigpday, y=cvd))
 p6 + geom_point() + 
   stat_smooth(method="glm", family="binomial") +  
@@ -868,4 +946,60 @@ renderPlot(
 #### More text follows.
 ```
 
+## The Final Shiny Product
+<img src="img/shiny_input_output.png" width="900px">
+
+
+## Input Panel 1
+<img src="img/shiny_input_1.png" width="900px">
+```{r eval=FALSE, label="input panel 1"}
+inputPanel(
+  radioButtons("x_var", label="Explanatory Variable", 
+    choices=c("BMI", "LDLC", "TOTCHOL"), selected="BMI"),
+  
+  radioButtons("y_var", label="Response Variable", 
+    choices=c("CVD", "STROKE", "ANYCHD"), selected="CVD"),
+  
+  checkboxInput("con_gender", label="Condition on Gender", value=FALSE)
+)
+```
+
+## Input Panel 2
+<img src="img/shiny_input_2.png" width="900px">
+```{r eval=FALSE, label="input panel 2"}
+inputPanel(
+  sliderInput("bmi_range", label="BMI range", min=10,
+  max=60, value=c(10,60)),
+  sliderInput("ldlc_range", label="LDLC range", min=20,
+  max=565, value=c(20,565)),
+  sliderInput("tot_range", label="Total Chol. range", min=112,
+  max=625, value=c(112,625))
+)
+```
  
+## Output Panel
+<img src="img/shiny_output.png" width="500px">
+```{r eval=FALSE, label="output panel 1"}
+  x <- fhs.only3[,input$x_var]
+  y <- fhs.only3[,input$y_var]
+  
+  if(input$x_var == "BMI") {
+    x.range <- input$bmi_range
+  } else if (input$x_var == "LDLC") {
+    x.range <- input$ldlc_range
+  } else 
+    x.range <- input$tot_range
+```
+
+## Output Panel
+<img src="img/shiny_output.png" width="500px">
+```{r eval=FALSE, label="output panel 2"}
+  if(input$con_gender){
+    p <- qplot(x,y, xlab=input$x_var, ylab=input$y_var, facets = . ~ SEX, data=fhs.only3)
+  } else {
+    p <- qplot(x,y, xlab=input$x_var,ylab=input$y_var) 
+  } 
+  #p + geom_point(size=3, colour="steelblue")
+  p + xlim(x.range) + stat_smooth(method="glm", family="binomial") + 
+  geom_point(position=position_jitter(height=0.02)) 
+```
