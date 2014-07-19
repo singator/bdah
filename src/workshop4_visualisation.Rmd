@@ -47,7 +47,7 @@ output:
 > - We have a subset of the original dataset, pertaining to 4434 patients.
 > - Each of these patients was followed for a total of 24 years, but we 
   only have
-  data on their clinical examinations for a period of 6 years, 
+  data on their clinical examinations for a period of 12 years, 
   spanning 1956 to 1968. 
     * The data is provided in Longitudinal form.
     * Each participant has 1 to 3 observations.
@@ -257,7 +257,7 @@ library(ggplot2)
     * workshop4_shiny.Rmd   
     * frmgham2.csv
 *  Go to *Session > Set Working Directory > Choose Directory*
-*  Set your working directory to be `bdah`
+*  Set your working directory to be `bdah`, the folder you just created.
 
 ## Outline
 * Introduction to Framingham Heart Study  
@@ -323,15 +323,10 @@ Z[c(1,3)]
 *  How can we create a vector `c(1.2, 2.2, 3.2, 4.2)`?  
 
 ## Exercise 1 Solution
-Try out the following tasks, that pertain to vectors.
-
 *  Run the following code, and try to figure out what it does:
 ```{r label="access vectors soln"}
 Z[c(1,3)]
-Z[-2]
 ```
-   How is it different from `Z[-2]`?  
-
 *  The expression `1:5` creates the vector `c(1,2,3,4,5)`. What does `5:1` do?  
 ```{r label="create descending vector"}
 5:1
@@ -395,6 +390,9 @@ tea.df$cost
 
 ## Exercise 2 Solution
 *  Retrieve the element in row 3 and column 2 of the `tea.df` data frame.  
+```{r label="exercise 2 solution 1"}
+tea.df[3, 2]
+```
 *  What does the following expression return?
 ```{r label="exercise 2 solution"}
 head(tea.df$cost)
@@ -582,8 +580,7 @@ vignette('introduction')
 The `cut()` function in R divides a numeric variable into categories.
 ```{r label="extracting data for goal 1"}
 fhs.only1 <- filter(fhs.long, PERIOD==1) %>% 
-  mutate(AGE.CAT=cut(AGE, 
-  breaks=c(30,44,54,64,74,84)))
+  mutate(AGE.CAT=cut(AGE, breaks=c(30,44,54,64,74,84)))
 head(fhs.only1[,c("RANDID","PERIOD", "AGE.CAT")])
 ```
 
@@ -800,11 +797,8 @@ Now let us use the `dplyr` functions to get what we need.
 ```{r label="goal 2 data extraction 2"}
 fhs.smokers <- filter(fhs.long, RANDID %in% all3.id) %>% 
   group_by(RANDID) %>% 
-  summarise(sex=min(SEX),
-    age=min(AGE),
-    ave.cigpday=mean(CIGPDAY),
-    num.smoking=sum(CIGPDAY > 0),
-    cvd=max(CVD)) %>% 
+  summarise(sex=min(SEX), age=min(AGE), ave.cigpday=mean(CIGPDAY),
+    num.smoking=sum(CIGPDAY > 0), cvd=max(CVD)) %>% 
   mutate(age.cat=cut(age, breaks=c(30,44,54,64,74,84)))
 ```
 
@@ -813,8 +807,7 @@ thrice.
 
 ## Towards Goal 2 | Data Extracted
 ```{r label="goal 2 data extraction 3"}
-fhs.smokers.3 <- filter(fhs.smokers, num.smoking == 3, 
-  age.cat == "(54,64]")
+fhs.smokers.3 <- filter(fhs.smokers, num.smoking == 3, age.cat == "(54,64]")
 ```
 Now we are ready to make the plot.
 
@@ -982,3 +975,13 @@ inputPanel(
   p + xlim(x.range) + stat_smooth(method="glm", family="binomial") + 
   geom_point(position=position_jitter(height=0.02)) 
 ```
+
+## More Information
+
+* What we have covered is how to run shiny from within RStudio.
+* For more production standard, we can deploy it as an app.
+* For much more information, refer to the RStudio website on shiny:
+  <http://shiny.rstudio.com>. It contains a gallery of examples, a
+  step-by-step tutorial and much more.
+* Over to Wu Dan now :)
+

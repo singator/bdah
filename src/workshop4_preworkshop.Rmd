@@ -10,21 +10,17 @@ output:
 ---
 
 
-<!---
-
-
 ## Outline {.smaller}
 
-- About the Workshop
+- Introduction ( 13:30 - 13:45 )
 
-- Pre-workshop Materials
+- Visualisation with R ( 13:45 - 16:00 )
+    * Use of grammar of graphics
+    * Use of shiny documents
+    * Coffee break from 15:00 - 15:30
 
-- Vik's...
+- Inference and Modeling with R ( 16:00 - 17:00 )
 
-- Dan's...
-
-
--->
 
 
 # ABOUT THE WORKSHOP
