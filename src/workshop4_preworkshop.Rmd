@@ -10,18 +10,18 @@ output:
 ---
 
 
-<!---
+<!--
 
 
-## Outline {.smaller}
+## Outline
 
 - About the Workshop
 
 - Pre-workshop Materials
 
-- Vik's...
+- Vik...
 
-- Dan's...
+- Dan...
 
 
 -->
@@ -49,7 +49,7 @@ This workshop aims to be a self-contained, practical and case-based introduction
 Concepts in all three sections of the workshop will be illustrated with one consistent real-world healthcare dataset. The attendees therefore are able to see the overall work flow of an analyst, and understand which R packages and functions to apply at different stages of the case study.
 
 
-<!---
+<!--
 
 
 ## Educationl Objectives
@@ -114,9 +114,13 @@ Dan uses R at work, and conducted sharing sessions on R for healthcare at Singap
 
 - [`dplyr`](http://cran.r-project.org/web/packages/dplyr): Grammar of data manipulation
 
+- [`reshape2`](http://cran.r-project.org/web/packages/reshape2): Flexibly reshape data
+
 - [`ggplot2`](http://cran.r-project.org/web/packages/ggplot2): An implementation of [*The Grammar of Graphics*](http://www.springer.com/statistics/computational+statistics/book/978-0-387-24544-7)
 
 - [`shiny`](http://cran.r-project.org/web/packages/shiny): A web application framework for R
+
+- [`psych`](http://cran.r-project.org/web/packages/psych): Procedures for psychological, psychometric and personality research 
 
 
 ## How to Install Packages in RStudio? 
