@@ -26,9 +26,9 @@ output:
     * Exploring Logistic Regression with FHS Data 
    
 ## The Framingham Heart Study (FHS)
-* A Long term study of Cardiovascular Disease among subjects in Framingham, USA.
-* Began in 1948 with 5209 subjects.
-* Patients examined every 2 years for
+* A long term study of Cardiovascular Disease among subjects in Framingham, USA.
+* It began in 1948 with 5209 subjects.
+* Patients have been examined every 2 years for
     * Clinical examination data  
     * Cardiovascular outcomes  
 * More information about the study can be found at the FHS
@@ -49,7 +49,7 @@ output:
   only have
   data on their clinical examinations for a period of 12 years, 
   spanning 1956 to 1968. 
-    * The data is provided in Longitudinal form.
+    * The data is provided in longitudinal form.
     * Each participant has 1 to 3 observations.
     * There are a total of 11627 rows in the data.
 
@@ -70,10 +70,15 @@ SEX    | 1 for males and 2 for females.
 PERIOD | An integer between 1 and 3 denoting the examination number.  
 AGE    | Age at examination (in years).  
 SYSBP, DIABP |  Systolic and diastolic blood pressure.   
+
+## Measurements in Our Dataset | cont'd
+Variable | Explanation
+---------|------------
 CIGPDAY | Number of cigarettes smoked per day.   
 BMI | Body Mass Index.
 LDLC | Low density cholesterol.
 TOTCHOL | Total cholesterol.
+HYPERTEN | 1 if patient has hypertension, which is defined to be Systolic greater than 140mmHg or Diastolic greater than 90mmHg.
 
 ## Outcome Measures in Our Dataset
 Variable | Explanation
@@ -81,7 +86,6 @@ Variable | Explanation
 STROKE | 1 if patient experienced a stroke during the 12 years and 0 otherwise.   
 ANYCHD | 1 if patient experienced a Coronary Heart Disease during the 12 years and 0 otherwise.   
 CVD    | 1 if patient experienced a Cerebrovascular Disease during the 12 years and 0 otherwise.   
-HYPERTEN | 1 if patient has hypertension, which is defined to be Systolic greater than 140mmHg or Diastolic greater than 90mmHg.
 
 ## Outline
 * Introduction to Framingham Heart Study  
@@ -104,9 +108,10 @@ HYPERTEN | 1 if patient has hypertension, which is defined to be Systolic greate
 
 ## Goal 1 : Hypertension and CVD Status | Insights
 
-* Increased association of hypertension with cerebrovascular disease (CVD) in elderly.
-* For a given age group, association of hypertension with cerebrovascular
-  disease is greater for males than females.
+> - Association of hypertension with CVD risk.
+> - Increased association of hypertension with cerebrovascular disease (CVD) in elderly.
+> - For a given age group, association of hypertension with cerebrovascular
+    disease is greater for males than females.
 
 Warning:
 
@@ -117,17 +122,17 @@ Warning:
 
 ## Goal 2 : Cigarettes and CVD Status | Insights
 
-* Number of cigarettes smoked is associated with CVD.
-* The effect of cigarettes seems to be larger for females than for males.
+> - Number of cigarettes smoked is associated with CVD.
+> - The effect of cigarettes seems to be larger for females than for males.
 
 ## Goal 3 : Interactively Exploring Relationships
 ![Goal 3](img/goal_3a.png)
 
 ## Goal 3 : Interactively Exploring Relationships | Details
-- There are several measurements in our data set.
-- There are also several responses.
-- We could look at plots of one combination at a time.
-- Or, we could use the shiny app to explore several combinations at one go,
+> - There are several measurements in our data set.
+> - There are also several responses.
+> - We could look at plots of one combination at a time.
+> - Or, we could use the shiny app to explore several combinations at one go,
   excluding outliers manually and even conditioning on gender!
 
 ## Outline
@@ -192,7 +197,7 @@ Warning:
 
 ## Installing [R](http://www.r-project.org) and [RStudio](http://www.rstudio.com)
 
-<iframe width="560" height="315" src="http://www.youtube.com/embed/cX532N_XLIs?rel=0" 
+<iframe width="560" height="315" src="http://www.youtube.com/embed/mowr71RlW0o?rel=0"
 frameborder="0" allowfullscreen></iframe>
 
 ## Navigating RStudio
@@ -219,7 +224,6 @@ Checking on `dplyr`:
 ```{r eval=TRUE, label="load dplyr"}
 library(dplyr)
 ```
-
 > - These messages mean you are OK!
 
 ## Ready To Go? | ggplot2
@@ -227,7 +231,6 @@ Checking on ggplot2:
 ```{r label="load_ggplot2"}
 library(ggplot2)
 ```
-
 > - No news is good news!
 
 ## Ready To Go? | shiny test

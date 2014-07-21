@@ -9,23 +9,25 @@ output:
     widescreen: yes
 ---
 
-
-<!--
-
-
 ## Outline
 
 - About the Workshop
 
-- Pre-workshop Materials
+- Introduction (WD, 13:30 - 13:40)
 
-- Vik...
+- Visualisation with R (Vik, 13:40 - 15:00)
+    * Use of dplyr for data manipulation.
+    * Use of ggplot2 for graphics.
+    * Use of shiny for interactive web-based plots. 
 
-- Dan...
 
+- Coffee break (15:00 - 15:30)
 
--->
+- Basic inference with R (WD, 15:30 - 17:00)
+    * One and two-sample testing.
+    * Workshop overview.
 
+- (Intermittent breaks for hands-on where possible.)
 
 # ABOUT THE WORKSHOP
 
@@ -107,7 +109,8 @@ Dan uses R at work, and conducted sharing sessions on R for healthcare at Singap
 
 ## Install Both [R](http://www.r-project.org) and [RStudio](http://www.rstudio.com) to Get Started
 
-<iframe width="560" height="315" src="http://www.youtube.com/embed/cX532N_XLIs?rel=0" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/mowr71RlW0o?rel=0"
+frameborder="0" allowfullscreen></iframe>
 
 
 ## R Packages Required
