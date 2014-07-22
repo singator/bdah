@@ -1,14 +1,16 @@
 ---
 title: "Case-based Introduction to Healthcare Analytics with R"
-author: '**Vik Gopal** (National University of Singapore) <br> **Wu Dan** (Khoo Teck
-  Puat Hospital)'
+
+author: "**Vik Gopal** (National University of Singapore) <br> **Wu Dan** (Khoo Teck Puat Hospital)"
+
 date: "22 July 2014"
+
 output:
   ioslides_presentation:
     fig_height: 3
     fig_width: 4.854
-    highlight: tango
-    logo: ./img/Rlogo.svg
+    highlight: default
+    logo: img/Rlogo.svg
     widescreen: yes
 ---
 
@@ -16,32 +18,32 @@ output:
 # INFERENTIAL STATISTICS
 
 
-## Expectation Management
+## Expectation Management {.flexbox .vcenter}
 
 This is **not** a graduate-level math / stats class.
 
-![I am still waiting for the day](./img/waiting.png "I am still waiting for the day")
+![I am still waiting for the day](img/waiting.png "I am still waiting for the day")
 
 Image source: <http://goo.gl/y3S05T>
 
 
-## Expectation Management
+## Expectation Management {.flexbox .vcenter}
 
-A journey of a thousand miles begins with the **first** step. Some very basic inferential stats to get you started **comfortably** with R.
+A journey of a thousand miles begins with the **first** step. There are some very basic inferential stats to get you started **comfortably** with R.
 
-![R maze](./img/rmaze.gif "R maze")
+![R maze](img/rmaze.gif "R maze")
 <br>
 
 Image source: <http://goo.gl/DGwVxp>
 
 
-## Expectation Management {.build}
+## Expectation Management {.flexbox .vcenter .build}
 
 I am a [casual user](http://www.urbandictionary.com/define.php?term=Casual+User) of R. If I can do it, you **can** do it too!
 
 So, ask Vik (hello, Stats PhD) about anything you don't understand today ;)
 
-![Arrow to Vik](./img/arrow.jpg "Arrow to Vik")
+![Arrow to Vik](img/arrow.jpg "Arrow to Vik")
 <br>
 
 Image source: <http://goo.gl/OPztxu>
@@ -61,10 +63,10 @@ library(psych)
 R works with CSV and [many other](http://cran.r-project.org/doc/manuals/r-release/R-data.html) data formats. 
 
 ```{r}
-fhs <- read.csv("./frmgham2.csv")
+fhs <- read.csv("frmgham2.csv")
 ```
 
-The following converts column names to upper case for ease of reference to the [FHS data documentation](https://biolincc.nhlbi.nih.gov/static/studies/teaching/framdoc.pdf). However, this conversion is generally neither necessary nor recommended. Instead, cultivate **good "R habits"** by learning from [Google's R Style Guide](https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml). 
+The following converts column names to upper case for ease of reference to the [FHS data documentation](https://biolincc.nhlbi.nih.gov/static/studies/teaching/framdoc.pdf). However, such a conversion is generally neither necessary nor recommended. Instead, cultivate **good R habits** by learning from [Google's R Style Guide](https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml). 
 
 ```{r}
 colnames(fhs) <- toupper(colnames(fhs))
@@ -73,10 +75,10 @@ colnames(fhs) <- toupper(colnames(fhs))
 
 ## Task 1: Hypothsis Testing for a Single Sample {.flexbox .vcenter}
 
-![Heart beat](./img/heartbeat.jpg "Heart beat. Image source: http://goo.gl/OWg2o7")
+![Heart beat](img/heartbeat.jpg "Heart beat. Image source: http://goo.gl/OWg2o7")
 <br>
 
-We wish to know whether the mean heart rate of "healthy" people at exam 1 was equal to 70 beats per minute (bpm). The criteria for "healthy" will be discussed soon.
+We wish to know whether the mean heart rate of "healthy" people at exam 1 is equal to 70 beats per minute (bpm). The criteria for "healthy" will be discussed soon.
 
 
 ## Task 1: Hypothsis Testing for a Single Sample | --- But first, understand your data (with summary stats) {.smaller .build}
@@ -127,20 +129,20 @@ ggplot(fhs.healthy, aes(x = HEARTRTE, y = ..density..)) +
 
 ## Task 1: Hypothsis Testing for a Single Sample | --- [One-sample *t*-test](http://en.wikipedia.org/wiki/Student%27s_t-test#One-sample_t-test) {.smaller .build}
 
-We wish to know whether the mean heart rate of "healthy" people at exam 1 was equal to 70 bpm. [Null hypothesis](http://en.wikipedia.org/wiki/Null_hypothesis), $H_0: \mu = 70$. [Alternative hypothesis](http://en.wikipedia.org/wiki/Alternative_hypothesis), $H_1: \mu \neq 70$. We test the null hypothesis with a one-sample *t*-test at a [significance level](http://en.wikipedia.org/wiki/Statistical_significance) ($\alpha$) of 0.05.
+We wish to know whether the mean heart rate of "healthy" people at exam 1 is equal to 70 bpm. [Null hypothesis](http://en.wikipedia.org/wiki/Null_hypothesis), $H_0: \mu = 70$. [Alternative hypothesis](http://en.wikipedia.org/wiki/Alternative_hypothesis), $H_1: \mu \neq 70$. We test the null hypothesis with a **one-sample *t*-test** at a [significance level](http://en.wikipedia.org/wiki/Statistical_significance) ($\alpha$) of 0.05.
 
 ```{r}
 with(fhs.healthy, t.test(HEARTRTE, mu = 70))
 ```
 
-**Interpretation**: Since $p > 0.05$, we fail to reject $H_0$ at $\alpha = 0.05$. Therefore there is no sufficient evidence to suggest that the mean heart rate of "healthy" people at exam 1 was equal to 70 bpm. 
+**Interpretation**: Since $p > 0.05$, we fail to reject $H_0$ at $\alpha = 0.05$. Therefore there is insufficient evidence to suggest that the mean heart rate of "healthy" people at exam 1 is statistically significantly different from 70 bpm. 
 
 
-## About Null Hypothsis ;) {.smaller}
+## About Null Hypothsis ;) {.smaller .flexbox .vcenter}
 
-*"Hell, my eighth grade science class managed to conclusively reject it just based on a classroom experiment. It's pretty sad to hear about million-dollar research teams who can't even manage that."*
+"Hell, my eighth grade science class managed to conclusively reject it just based on a classroom experiment. It's pretty sad to hear about million-dollar research teams who can't even manage that."
 
-![About null hypothsis ;)](./img/h0.png "About null hypothsis ;)")
+![About null hypothsis ;)](img/h0.png "About null hypothsis ;)")
 <br>
 
 Image source: <http://goo.gl/d5rN9p>
@@ -148,15 +150,15 @@ Image source: <http://goo.gl/d5rN9p>
 
 ## Task 2: Hypothsis Testing (HT) for 2 Samples {.flexbox .vcenter}
 
-![Two hearts](./img/2hearts.png "Two hearts. Image source: http://goo.gl/Y1kngK")
+![Two hearts](img/2hearts.png "Two hearts. Image source: http://goo.gl/Y1kngK")
 <br>
 
-2a. We wish to know whether there was a difference in mean heart rates at exams 1 and 2. 
+Task 2a: We wish to know whether there is a difference in mean heart rates between exam 1 and exam 2. 
 
-2b. We wish to know whether there was a difference in mean heart rates between men and women at exam 1.
+Task 2b: We wish to know whether there is a difference in mean heart rates between men and women at exam 1.
 
 
-## Task 2a: HT for 2 Samples: Paired Comparisons | --- But first, reshape and understand your data {.smaller .build}
+## Task 2a: HT for 2 Samples, Paired Comparisons | --- But first, reshape and understand your data {.smaller .build}
 
 Reshape heart rate data from **long** format to **wide** format.
 
@@ -169,7 +171,7 @@ tbl_df(fhs.wide)
 ```
 
 
-## Task 2a: HT for 2 Samples: Paired Comparisons | --- But first, reshape and understand your data {.smaller .build}
+## Task 2a: HT for 2 Samples, Paired Comparisons | --- But first, reshape and understand your data {.smaller .build}
 
 ```{r message = FALSE, warning = FALSE}
 ggplot(fhs.wide, aes(x = HEARTRTE1 - HEARTRTE2, y = ..density..)) + 
@@ -178,18 +180,18 @@ ggplot(fhs.wide, aes(x = HEARTRTE1 - HEARTRTE2, y = ..density..)) +
 ```
 
 
-## Task 2a: HT for 2 Samples: Paired Comparisons | --- [Paired *t*-test](http://en.wikipedia.org/wiki/Student%27s_t-test#Dependent_t-test_for_paired_samples) {.smaller .build}
+## Task 2a: HT for 2 Samples, Paired Comparisons | --- [Paired *t*-test](http://en.wikipedia.org/wiki/Student%27s_t-test#Dependent_t-test_for_paired_samples) {.smaller .build}
 
-We wish to know whether there was a difference in mean heart rates at exams 1 and 2. $H_0: \mu_d = 0$. $H_1: \mu_d \neq 0$. We test the null hypothesis with a paired *t*-test at $\alpha = 0.05$.
+We wish to know whether there is a difference in mean heart rates between exam 1 and exam 2. $H_0: \mu_d = 0$. $H_1: \mu_d \neq 0$. We test the null hypothesis with a **paired *t*-test** at $\alpha = 0.05$.
 
 ```{r}
 with(fhs.wide, t.test(HEARTRTE1, HEARTRTE2, paired = TRUE))
 ```
 
-**Interpretation**: Since $p < 0.05$, we reject $H_0$ at $\alpha = 0.05$. Therefore there is strong evidence to suggest that there was a difference in mean heart rates at exams 1 and 2. 
+**Interpretation**: Since $p < 0.05$, we reject $H_0$ at $\alpha = 0.05$. Therefore there is a statistically significant difference in mean heart rates between exam 1 and exam 2.
 
 
-## Task 2a: HT for 2 Samples: Paired Comparisons | --- Statistical signficance vs clinical signficance {.smaller .build}
+## Task 2a: HT for 2 Samples, Paired Comparisons | --- Statistical signficance vs clinical signficance {.smaller .build}
 
 ```{r}
 set.seed(12345)
@@ -203,7 +205,7 @@ ggplot(fhs.asample, aes(x = HEARTRTE1 - HEARTRTE2, y = ..density..)) +
 ```
 
 
-## Task 2a: HT for 2 Samples: Paired Comparisons | --- Statistical signficance vs clinical signficance {.smaller .build}
+## Task 2a: HT for 2 Samples, Paired Comparisons | --- Statistical signficance vs clinical signficance {.smaller .build}
 
 ```{r}
 with(fhs.asample, t.test(HEARTRTE1, HEARTRTE2, paired = TRUE))
@@ -212,26 +214,26 @@ with(fhs.asample, t.test(HEARTRTE1, HEARTRTE2, paired = TRUE))
 Be careful when interpreting the results from hypothesis testing **if the sample size is large**, because any small departure from the hypothesized value will probably be detected, even when the difference is of little or no clinical significance.
 
 
-## About *p*-value ;)
+## About *p*-value ;) {.flexbox .vcenter}
 
 Overcome the slavish obsession for the *p*-value.
 
-![About p-value ;)](./img/pvalue.jpg "About p-value ;)")
+![About p-value ;)](img/pvalue.jpg "About p-value ;)")
 <br>
 
 Image source: <http://goo.gl/RvuLlx>
 
 
-## Task 2b: HT for 2 Samples: Unpaired Compar. | --- But first, understand your data {.smaller .build}
+## Task 2b: HT for 2 Samples, Unpaired Compar. | --- But first, understand your data {.smaller .build}
 
-We wish to know whether there was a difference in mean heart rates between men and women at exam 1.
+We wish to know whether there is a difference in mean heart rates between men and women at exam 1.
 
 ```{r}
 with(fhs.wide, describeBy(HEARTRTE1, group = SEX))
 ```
 
 
-## Task 2b: HT for 2 Samples: Unpaired Compar. | --- But first, understand your data {.smaller .build}
+## Task 2b: HT for 2 Samples, Unpaired Compar. | --- But first, understand your data {.smaller .build}
 
 ```{r message = FALSE, warning = FALSE}
 ggplot(fhs.wide, aes(HEARTRTE1, fill = as.factor(SEX))) + 
@@ -241,7 +243,7 @@ ggplot(fhs.wide, aes(HEARTRTE1, fill = as.factor(SEX))) +
 
 ## Task 2b: HT for 2 Samples: Unpaired Compar. | --- [Independent two-sample *t*-test](http://en.wikipedia.org/wiki/Student%27s_t-test#Independent_two-sample_t-test) {.smaller .build}
 
-We wish to know whether there was a difference in mean heart rates between men and women at exam 1. $H_0: \mu_1 - \mu_2 = 0$. $H_1: \mu_1 - \mu_2 \neq 0$. We test the null hypothesis with an independent two-sample *t*-test at $\alpha = 0.05$.
+We wish to know whether there is a difference in mean heart rates between men and women at exam 1. $H_0: \mu_1 - \mu_2 = 0$. $H_1: \mu_1 - \mu_2 \neq 0$. We test the null hypothesis with **independent two-sample *t*-tests** at $\alpha = 0.05$.
 
 Assuming equal population variances, $\sigma^2_1 = \sigma^2_2$, the following test generates $p < 0.05$.
 
@@ -266,11 +268,13 @@ t.test(HEARTRTE1 ~ SEX, data = fhs.asample)
 ## Task 3: Hypothsis Testing for $\geq$ 3 Samples {.flexbox .vcenter}
 
 <div class="columns-2">
-![BMI chart](./img/bmi.png "BMI chart. Image source: http://goo.gl/aCN3YI")
 
-3a. We wish to know whether there was a difference in body mass index (BMI) among people with different education levels at exam 1. 
+![BMI chart](img/bmi.png "BMI chart. Image source: http://goo.gl/aCN3YI")
 
-3b. If there were a difference, we wish to know which education levels differed from one another.
+Task 3a: We wish to know whether there is a difference in mean body mass indices (BMIs) among people with different education levels at exam 1.
+
+Task 3b: If there were a difference, we wish to know which education levels differ from one another.
+
 </div>
 
 
@@ -292,20 +296,20 @@ ggplot(filter(fhs, PERIOD == 1), aes(x = as.factor(EDUC), y = BMI)) +
 
 ## Task 3a: HT for $\geq$ 3 Samples | --- [One-way ANOVA *F*-test](http://en.wikipedia.org/wiki/One-way_analysis_of_variance#The_hypothesis_test) {.smaller .build}
 
-We wish to know whether there was a difference in mean body mass indices (BMIs) among people with different education levels at exam 1. $H_0: \mu_1 = \mu_2 = \mu_3 = \mu_4$. $H_1:$ otherwise. We test the null hypothesis with a one-way ANOVA (analysis of variance) *F*-test at $\alpha = 0.05$.
+We wish to know whether there is a difference in mean BMIs among people with different education levels at exam 1. $H_0: \mu_1 = \mu_2 = \mu_3 = \mu_4$. $H_1:$ otherwise. We test the null hypothesis with a **one-way ANOVA (analysis of variance) *F*-test** at $\alpha = 0.05$.
 
 ```{r}
 summary(aov(BMI ~ as.factor(EDUC), data = filter(fhs, PERIOD == 1)))
 ```
 
-**Interpretation**: Since $p < 0.05$, we reject $H_0$ at $\alpha = 0.05$. Therefore there is strong evidence to suggest that there was a difference in mean BMIs among people with different education levels at exam 1.
+**Interpretation**: Since $p < 0.05$, we reject $H_0$ at $\alpha = 0.05$. Therefore there is a statistically significant difference in mean BMIs among people with different education levels at exam 1.
 
-Is the conclusion **good enough**?
+However, is the conclusion **good enough**?
 
 
 ## Task 3b: HT for $\geq$ 3 Samples: Post-hoc Analysis | --- [Tukey's HSD test](http://en.wikipedia.org/wiki/Tukey%27s_range_test) {.smaller .build}
 
-If there were a difference (in Task 2a), we wish to know which education levels differed from one another. The Tukey's HSD (honest significant difference) test examines all pairwise differences in means. 
+If there were a difference (in Task 2a), we wish to know which education levels differ from one another. The **Tukey's HSD (honest significant difference) test** examines all pairwise differences in means. 
 
 ```{r}
 TukeyHSD(aov(BMI ~ as.factor(EDUC), data = filter(fhs, PERIOD == 1)))
@@ -314,5 +318,21 @@ TukeyHSD(aov(BMI ~ as.factor(EDUC), data = filter(fhs, PERIOD == 1)))
 **Interpretation**: What can you conclude based on your learning from Task 2? 
 
 
-## Concluding Remarks
+# AS A (HEALTH) DATA SCIENTIST
+
+
+## You Should Be Good at This {.flexbox .vcenter}
+
+![Analysis steps](img/dasteps.png "Analysis steps")
+<br>
+
+Image source: <http://goo.gl/g2mIR3>
+
+
+## You Should Be Better at This {.flexbox .vcenter}
+
+![3 stages of analytical thinking](img/quantiative.png "3 stages of analytical thinking")
+<br>
+
+Image source: <http://goo.gl/7ySzDw>
 
