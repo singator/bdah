@@ -1,0 +1,50 @@
+Workshop Overview
+========================================================
+author: Vik Gopal and Wu Dan
+date: July 22, 2014
+
+#### Marina Bay Sands
+#### BDAH 2014
+
+Outline
+===
+- Course Pre-requisites
+- Course Topics
+- Course Time-table
+
+Course Resources and Websites
+===
+- All codes and datasets that will be used in the workshop can be found at
+  <https://github.com/singator/bdah>
+  + You ***will*** need a github account (which is free)
+  + You ***might*** need a github GUI, which can be downloaded from here
+    <http://git-scm.com/download>
+- R installation website:
+  <http://cran.r-project.org>
+- RStudio installation website:
+  <http://www.rstudio.com/products/rstudio/download/>
+
+Course Pre-requisites
+=== 
+- Please bring along your laptop, with 
+  + R 3.1.0 installed
+  + RStudio installed
+- Ensure that the tests in the visualisation slides are working without
+  problems.
+
+Course Topics
+===
+- Overview of FHS.
+- R basics.
+- Data manipulation with `dplyr`.
+- Visualisation with `ggplot2`.
+- Interactive visualisation with `shiny`.
+
+Course Time-table
+===
+- 13:30 - 14:30:
+  + Set up and `dplyr`.
+- 14:30 - 15:30:
+  + `ggplot2` and `shiny`.
+- 15:30 - 15:45:
+  + Coffee break

@@ -1,0 +1,61 @@
+---
+title: "Workshop Title: Case-Study Based Introduction to Healthcare Analytics with `R`"
+output: html_document
+---
+
+
+## Names, affiliations and locations of instructors
+1. Vik Gopal, Lecturer, Department of Statistics and Applied Probability, National University of Singapore
+2. Wu Dan, Team Lead, Healthcare Analytics Unit, Khoo Teck Puat Hospital, Singapore
+
+
+## Opening summary
+Increasingly, healthcare analytics professionals are faced with larger and more complex datasets. The pressure is on the analysts to understand the intricate relationships among many healthcare variables, and to then provide actionable insights.
+
+This workshop aims to be a self-contained, practical and case-study based introduction to healthcare analytics with open-source `R`. We start by learning sufficient programming fundamentals of `R` necessary for the workshop. Subsequently, we cover an essential tool for exploratory data analysis (EDA) --- visualization --- through which we can gain a good intuition of variable relationships in a dataset. This section consists of three types of visualization techniques: conditional plotting by applying the "grammar of graphics", interactive dashboards and animations. EDA encourages an analyst to first have an intimate understanding of the data, and then possibly formulate hypotheses that may lead to new data collection and experiments. Therefore, in the final section, we learn how to draw inferences about population parameters by testing hypotheses about them using appropriate sample statistics. This section consists of inferential methods applied to one and more samples, and to continuous and categorical data.
+
+Concepts in all three sections of the workshop will be illustrated with one consistent real-world healthcare dataset. The attendees therefore are able to see the overall work flow of an analyst, and understand which `R` packages and functions to apply at different stages of the case study.
+
+
+## Outline of topics
+1. Overview of `R` fundamentals
+2. Exploratory data analysis
+  * "Grammar of graphics" overview with `ggplot2`
+  * Interactive dashboards with `Shiny`
+  * Animating plots with `animate`
+3. Inferential data analysis
+  * Hypothesis testing involving one or more samples
+  * Analysis of variance
+  * Nonparametric methods
+  * Inference on proportions and contingency tables
+  * Linear regression and logistic regression
+
+
+## Specific educational objectives
+1. The primary objective is to get `R` users (including those who are new to `R`) to a level where they can comfortably carry out the following tasks:
+  * EDA of a dataset via visualizations
+  * Basic inference and modeling
+
+2. To assist in achieving the primary objective, the presenters will share all our `R` code on GitHub before the workshop itself. We trust that this approach will help overcome the initial barriers to using or switching to `R`. By studying and modifying our code, the attendees will be able to carry out similar analyses on their own datasets almost immediately.
+
+
+## Who should attend
+* Healthcare analytics professionals
+* Clinicians
+* Health services researchers
+* Healthcare policy makers
+* Healthcare IT professionals
+* Anyone who wishes to improve his/her ability in understanding, interpreting and visualizing healthcare data
+* Anyone who is a current user of SPSS, SAS, Stata, and so on but wishes to learn more about `R` 
+
+
+## Level of the content
+* Section 1 (20% of all content): basic 
+* Section 2 (40% of all content): intermediate
+* Section 3 (40% of all content): intermediate
+
+
+## Experience of presenters in teaching similar content, including short CVs
+Vik Gopal obtained his PhD from the University of Florida, with a dissertation on running Markov chains in parallel. Upon graduation, he joined the IBM Research Collaboratory in Singapore and worked with government agencies on traffic prediction and weather modeling problems. Vik is currently working at the National University of Singapore as a Lecturer in the Department of Statistics and Applied Probability. He has been using `R` for close to 10 years now, and is an ardent fan due to its vast library of user-contributed statistical routines and excellent visualization capabilities. Vik teaches `R` in his classes at the university and recently presented one of his `R` packages at the annual useR! conference in 2013.
+
+Wu Dan is currently the Team Lead of Healthcare Analytics Unit at Khoo Teck Puat Hospital (KTPH), Alexandra Health, Singapore. Working with a team of data scientists, Dan oversees projects in predictive analytics and operations research that generate actionable insights to enable better patient care. In Dan's previous job at the Quality Management Office at KTPH, he coordinated the implementation of National Standards of Healthcare and patient safety improvement projects to close quality gaps at the Hospital. Dan uses `R` in his work, and conducted sharing sessions on `R` for healthcare at the Singapore `R` User Group, the International Conference on Big Data and Analytics in Healthcare 2013, and the Healthcare Quality Society of Singapore Quality Forum 2013.

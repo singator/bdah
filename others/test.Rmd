@@ -1,0 +1,68 @@
+---
+title: "Shiny Example"
+date: "Tuesday, July 08, 2014"
+output: html_document
+runtime: shiny
+---
+
+This is an example of a Shiny document. It glitters and glows and impresses your
+users! The dataset used is the Framingham data, but we shall restrict the data
+to only the third visit.  This is the input panel for our application.
+```{r, echo=FALSE}
+library(ggplot2)
+library(dplyr)
+fhs.long <- read.csv("../data/frmgham2.csv")
+fhs.only3 <- filter(fhs.long, PERIOD==3)
+```
+
+```{r, echo=FALSE}
+inputPanel(
+  radioButtons("x_var", label="Explanatory Variable", 
+    choices=c("BMI", "LDLC", "TOTCHOL"), selected="BMI"),
+  
+  radioButtons("y_var", label="Response Variable", 
+    choices=c("CVD", "STROKE", "ANYCHD"), selected="CVD"),
+  
+  checkboxInput("con_gender", label="Condition on Gender", value=FALSE)
+)
+
+inputPanel(
+  sliderInput("bmi_range", label="BMI range", min=10,
+  max=60, value=c(10,60)),
+  sliderInput("ldlc_range", label="LDLC range", min=20,
+  max=565, value=c(20,565)),
+  sliderInput("tot_range", label="Total Chol. range", min=112,
+  max=625, value=c(112,625))
+)
+
+renderPlot({
+#  if(input$x_var=="BMI") {
+#    p <- ggplot(fhs.only3, aes(x=BMI, y=CVD)) 
+#  } else if(input$x_var=="LDLC")
+#    p <- ggplot(fhs.only3, aes(x=LDLC, y=CVD)) 
+#  else 
+#    p <- ggplot(fhs.only3, aes(x=TOTCHOL, y=CVD)) 
+#  p + geom_point()
+  
+  x <- fhs.only3[,input$x_var]
+  y <- fhs.only3[,input$y_var]
+  
+  if(input$x_var == "BMI") {
+    x.range <- input$bmi_range
+  } else if (input$x_var == "LDLC") {
+    x.range <- input$ldlc_range
+  } else 
+    x.range <- input$tot_range
+  
+  
+  if(input$con_gender){
+    p <- qplot(x,y, xlab=input$x_var, ylab=input$y_var, facets = . ~ SEX, data=fhs.only3)
+  } else {
+    p <- qplot(x,y, xlab=input$x_var,ylab=input$y_var) 
+#    p <- qplot(x,y, xlab=input$x_var,ylab=input$y_var,position=position_jitter(height=0.05)) 
+  } 
+  #p + geom_point(size=3, colour="steelblue")
+  p + xlim(x.range) + stat_smooth(method="glm", family="binomial") + 
+  geom_point(position=position_jitter(height=0.02)) 
+})
+```
